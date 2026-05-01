@@ -25,7 +25,7 @@ export default function PropertiesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProperties().then(data => {
+    fetchProperties({ listing_type: 'sale' }).then(data => {
       setProperties(data.properties as Property[]);
       setLoading(false);
     }).catch(err => {
@@ -62,7 +62,7 @@ export default function PropertiesPage() {
     }
 
     props = props.filter(
-      (p) => p.price >= filters.minPrice && p.price <= filters.maxPrice
+      (p) => parseFloat(String(p.price)) >= filters.minPrice && parseFloat(String(p.price)) <= filters.maxPrice
     );
 
     if (searchQ) {
@@ -74,15 +74,15 @@ export default function PropertiesPage() {
     }
 
     if (sort === "price-asc") {
-      props.sort((a, b) => a.price - b.price);
+      props.sort((a, b) => parseFloat(String(a.price)) - parseFloat(String(b.price)));
     } else if (sort === "price-desc") {
-      props.sort((a, b) => b.price - a.price);
+      props.sort((a, b) => parseFloat(String(b.price)) - parseFloat(String(a.price)));
     } else if (sort === "area-asc") {
-      props.sort((a, b) => a.area - b.area);
+      props.sort((a, b) => (a.area ?? 0) - (b.area ?? 0));
     }
 
     return props;
-  }, [filters, sort, searchQ]);
+  }, [filters, sort, searchQ, properties]);
 
   return (
     <div className="min-h-screen bg-gray-50">

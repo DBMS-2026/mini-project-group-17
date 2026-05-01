@@ -78,6 +78,7 @@ export async function fetchProperties(params?: {
   city?: string;
   category?: string;
   limit?: number;
+  listing_type?: string;
 }) {
   const qs = new URLSearchParams(
     Object.entries(params || {}).filter(([, v]) => v !== undefined) as [string, string][]

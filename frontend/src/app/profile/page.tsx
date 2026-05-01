@@ -20,13 +20,13 @@ export default function ProfilePage() {
       const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001';
       fetch(`${BACKEND_URL}/api/properties/user/${user.id}`)
         .then(res => res.json())
-        .then(data => { if (Array.isArray(data)) setProperties(data) })
-        .catch(console.error);
+        .then(data => { if (Array.isArray(data)) setProperties(data); })
+        .catch(() => setProperties([]));
 
       fetch(`${BACKEND_URL}/api/swaps/user/${user.id}`)
-        .then(res => res.json())
-        .then(data => { if (Array.isArray(data)) setSwaps(data) })
-        .catch(console.error);
+        .then(res => { if (res.ok) return res.json(); return []; })
+        .then(data => { if (Array.isArray(data)) setSwaps(data); })
+        .catch(() => setSwaps([]));
     }
   }, [user]);
 
@@ -166,8 +166,19 @@ export default function ProfilePage() {
                           <Building2 size={20} />
                         </div>
                         <div>
-                          <p className="font-medium text-slate-900">{listing.location}</p>
-                          <p className="text-sm text-slate-500">${listing.listed_price?.toLocaleString()}/mo</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-slate-900">{listing.title || 'Untitled Property'}</p>
+                            <span className={`px-2 py-0.5 text-xs rounded-full font-semibold ${
+                              listing.listing_type === 'rent'
+                                ? 'bg-emerald-100 text-emerald-700'
+                                : 'bg-blue-100 text-blue-700'
+                            }`}>
+                              {listing.listing_type === 'rent' ? 'For Rent' : 'For Sale'}
+                            </span>
+                          </div>
+                          <p className="text-sm text-slate-500">
+                            ₹{Number(listing.price).toLocaleString()}{listing.listing_type === 'rent' ? '/mo' : ''} • {listing.city}
+                          </p>
                         </div>
                       </div>
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${listing.status === 'AVAILABLE' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>

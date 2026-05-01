@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Search, SlidersHorizontal } from "lucide-react";
-import { MOCK_RENT_PROPERTIES } from "@/lib/data";
+import { useEffect, useMemo, useState } from "react";
+import { Search, SlidersHorizontal, Loader2 } from "lucide-react";
+import { fetchProperties } from "@/lib/api";
+import type { Property } from "@/lib/data";
 import PropertyCard from "@/components/properties/PropertyCard";
 import FilterSidebar, { FilterState, defaultFilters } from "@/components/properties/FilterSidebar";
 import ArticlesSection from "@/components/home/ArticlesSection";
@@ -11,9 +12,21 @@ export default function RentPage() {
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
   const [filterOpen, setFilterOpen] = useState(false);
   const [searchQ, setSearchQ] = useState("");
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProperties({ listing_type: 'rent' }).then(data => {
+      setProperties(data.properties as Property[]);
+      setLoading(false);
+    }).catch(err => {
+      console.error(err);
+      setLoading(false);
+    });
+  }, []);
 
   const filtered = useMemo(() => {
-    let props = [...MOCK_RENT_PROPERTIES];
+    let props = [...properties];
 
     if (filters.city) {
       props = props.filter((p) =>
@@ -40,7 +53,7 @@ export default function RentPage() {
     }
 
     props = props.filter(
-      (p) => p.price >= filters.minPrice && p.price <= filters.maxPrice
+      (p) => parseFloat(String(p.price)) >= filters.minPrice && parseFloat(String(p.price)) <= filters.maxPrice
     );
 
     if (searchQ) {
@@ -52,7 +65,7 @@ export default function RentPage() {
     }
 
     return props;
-  }, [filters, searchQ]);
+  }, [filters, searchQ, properties]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -109,11 +122,26 @@ export default function RentPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-              {filtered.map((property) => (
-                <PropertyCard key={property.id} property={property} isRent />
-              ))}
-            </div>
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-20 text-emerald-600">
+                <Loader2 className="w-10 h-10 animate-spin mb-4" />
+                <p className="text-gray-500 font-medium">Loading rentals from database...</p>
+              </div>
+            ) : filtered.length === 0 ? (
+              <div className="text-center py-20">
+                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
+                  <Search className="w-8 h-8 text-gray-400" />
+                </div>
+                <h3 className="text-gray-700 font-semibold mb-2">No rentals found</h3>
+                <p className="text-gray-500 text-sm">Try adjusting your filters or search terms.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                {filtered.map((property) => (
+                  <PropertyCard key={property.id} property={property} isRent />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

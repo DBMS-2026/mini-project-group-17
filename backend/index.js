@@ -38,6 +38,7 @@ app.use('/api/swaps', swapRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/upload', require('./routes/uploadRoutes'));
 
 // Custom endpoint for Live Trigger Demo
 const listingController = require('./controllers/listingController');

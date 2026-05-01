@@ -5,11 +5,39 @@ const PYTHON_SERVICE_URL = process.env.PYTHON_SERVICE_URL || 'http://localhost:8
 
 exports.getAllProperties = async (req, res) => {
   try {
-    const properties = await PropertyModel.getAllProperties();
+    const { listing_type } = req.query;
+    const properties = await PropertyModel.getAllProperties(listing_type);
     res.json({ properties });
   } catch (err) {
     console.error('Error fetching properties:', err);
     res.status(500).json({ error: 'Database error' });
+  }
+};
+
+exports.getUserProperties = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const properties = await PropertyModel.getPropertiesByUserId(userId);
+    res.json(properties);
+  } catch (err) {
+    console.error('Error fetching user properties:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
+};
+
+exports.createProperty = async (req, res) => {
+  try {
+    // Basic validation
+    const { owner_id, city, price, title } = req.body;
+    if (!owner_id || !city || !price || !title) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const newProperty = await PropertyModel.createProperty(req.body);
+    res.status(201).json({ success: true, property: newProperty });
+  } catch (err) {
+    console.error('Error creating property:', err);
+    res.status(500).json({ error: 'Failed to create property', details: err.message });
   }
 };
 
