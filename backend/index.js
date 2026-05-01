@@ -46,7 +46,8 @@ app.use('/api/upload', require('./routes/uploadRoutes'));
 
 // Custom endpoint for Live Trigger Demo
 const listingController = require('./controllers/listingController');
-app.post('/api/listings/create-swap', listingController.createPropertyAndSwap);
+const { protectRoute } = require('./middleware/authMiddleware');
+app.post('/api/listings/create-swap', protectRoute, listingController.createPropertyAndSwap);
 
 // ──────────────────────────────────────────────
 // Bridge: Cycle Detection (Node → Python Swap Engine)
