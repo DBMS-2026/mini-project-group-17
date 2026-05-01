@@ -26,8 +26,10 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit
 });
 
+const { protectRoute } = require('../middleware/authMiddleware');
+
 // Upload route (allows multiple files)
-router.post('/', upload.array('photos', 5), (req, res) => {
+router.post('/', protectRoute, upload.array('photos', 5), (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: 'No files uploaded' });

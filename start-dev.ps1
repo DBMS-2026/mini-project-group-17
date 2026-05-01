@@ -14,7 +14,7 @@ Write-Host ""
 # ── Backend (Node.js) ─────────────────────────────────────
 Write-Host "[1/4] Backend (Node.js)    --> http://localhost:3001" -ForegroundColor Green
 Start-Process powershell `
-    -ArgumentList "-NoExit", "-Command", "if (-not (Test-Path node_modules)) { npm install }; npm run dev" `
+    -ArgumentList "-NoExit", "-Command", "npm install; npm run dev" `
     -WorkingDirectory "$root\backend"
 
 Start-Sleep -Seconds 1
@@ -22,7 +22,7 @@ Start-Sleep -Seconds 1
 # ── Swap Engine (Python FastAPI) ──────────────────────────
 Write-Host "[2/4] Swap Engine (Python) --> http://localhost:8001" -ForegroundColor Green
 Start-Process powershell `
-    -ArgumentList "-NoExit", "-Command", "uvicorn main:app --reload --port 8001" `
+    -ArgumentList "-NoExit", "-Command", "pip install -r requirements.txt; python -m uvicorn main:app --reload --port 8001" `
     -WorkingDirectory "$root\swap-engine"
 
 Start-Sleep -Seconds 1
@@ -30,7 +30,7 @@ Start-Sleep -Seconds 1
 # ── AI Service (Python FastAPI) ───────────────────────────
 Write-Host "[3/4] AI Service (Python)  --> http://localhost:8000" -ForegroundColor Green
 Start-Process powershell `
-    -ArgumentList "-NoExit", "-Command", "uvicorn main:app --reload --port 8000" `
+    -ArgumentList "-NoExit", "-Command", "pip install -r requirements.txt; python -m uvicorn main:app --reload --port 8000" `
     -WorkingDirectory "$root\ai-service"
 
 Start-Sleep -Seconds 1
@@ -38,7 +38,7 @@ Start-Sleep -Seconds 1
 # ── Frontend (Next.js) ────────────────────────────────────
 Write-Host "[4/4] Frontend (Next.js)   --> http://localhost:3000" -ForegroundColor Green
 Start-Process powershell `
-    -ArgumentList "-NoExit", "-Command", "if (-not (Test-Path node_modules)) { npm install }; npm run dev" `
+    -ArgumentList "-NoExit", "-Command", "npm install; npm run dev" `
     -WorkingDirectory "$root\frontend"
 
 Write-Host ""
