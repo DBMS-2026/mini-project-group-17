@@ -38,3 +38,36 @@ next-env.d.ts
 
 # Ignore leftover nested app scaffold/repo
 frontend/nexus-estate/
+
+# ── Python ────────────────────────────────────
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+**/venv/
+.venv/
+**/.venv/
+env/
+*.egg-info/
+dist/
+*.egg
+
+# ── ML Model files (large binaries — use Git LFS if needed) ─
+# Uncomment the line below to exclude model files from git
+# *.pkl
+
+# ── Docker ────────────────────────────────────
+.docker/
+postgres_data/
+
+# ── Datasets (large CSV files) ────────────────
+ai-service/kaggle_*.csv
+
+# ── Legacy / merged dirs ──────────────────────
+backend2/
+backend/api-gateway/
+backend/swap-engine/
+backend/database/

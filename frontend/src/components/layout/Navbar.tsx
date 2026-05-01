@@ -30,12 +30,9 @@ const navLinks = [
     ],
   },
   { label: 'City Swap', href: '/swap', icon: ArrowLeftRight, highlight: true },
-  {
-    label: 'Market Insights',
-    href: '/insights',
-    icon: BarChart3,
-  },
+  { label: 'Market Insights', href: '/insights', icon: BarChart3 },
   { label: 'Sell Property', href: '/sell' },
+  { label: 'List Property (Demo)', href: '/add-property', highlight: true },
   { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]

@@ -287,23 +287,7 @@ BEGIN;
 COMMIT;
 
 
--- ── Rollback demo (run independently to test failure path) ─────────────────
-BEGIN;
 
-    INSERT INTO transactions (details, status)
-    VALUES ('Test rollback: invalid swap simulation', 'PENDING');
-
-    -- Intentional bad update (non-existent lease)
-    UPDATE leases
-    SET    user_id = 999           -- no such user → FK violation
-    WHERE  lease_id = 1;
-
-    -- If we reach here, mark failed; otherwise the ROLLBACK below fires
-    UPDATE transactions
-    SET    status = 'FAILED'
-    WHERE  details = 'Test rollback: invalid swap simulation';
-
-ROLLBACK;
 
 
 -- ============================================================

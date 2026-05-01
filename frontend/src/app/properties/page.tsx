@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Search, SlidersHorizontal, Grid3X3, List } from "lucide-react";
-import { MOCK_PROPERTIES } from "@/lib/data";
+import { useEffect, useMemo, useState } from "react";
+import { Search, SlidersHorizontal, Grid3X3, List, Loader2 } from "lucide-react";
+import { fetchProperties } from "@/lib/api";
+import type { Property } from "@/lib/data";
 import PropertyCard from "@/components/properties/PropertyCard";
 import FilterSidebar, { FilterState, defaultFilters } from "@/components/properties/FilterSidebar";
 
@@ -20,9 +21,21 @@ export default function PropertiesPage() {
   const [searchQ, setSearchQ] = useState("");
   const [filterOpen, setFilterOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProperties().then(data => {
+      setProperties(data.properties as Property[]);
+      setLoading(false);
+    }).catch(err => {
+      console.error(err);
+      setLoading(false);
+    });
+  }, []);
 
   const filtered = useMemo(() => {
-    let props = [...MOCK_PROPERTIES];
+    let props = [...properties];
 
     if (filters.city) {
       props = props.filter((p) =>
@@ -156,7 +169,12 @@ export default function PropertiesPage() {
               </div>
             </div>
 
-            {filtered.length === 0 ? (
+            {loading ? (
+              <div className="flex flex-col items-center justify-center py-20 text-nexus-600">
+                <Loader2 className="w-10 h-10 animate-spin mb-4" />
+                <p className="text-gray-500 font-medium">Loading properties from database...</p>
+              </div>
+            ) : filtered.length === 0 ? (
               <div className="text-center py-20">
                 <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
                   <Search className="w-8 h-8 text-gray-400" />
