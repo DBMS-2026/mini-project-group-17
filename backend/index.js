@@ -20,6 +20,10 @@ const server = http.createServer(app);
 // Initialize Socket.io
 initSockets(server);
 
+// Initialize AI Model Scheduler (runs at 12 AM / 12 PM)
+const { initMarketInsightsScheduler } = require('./services/marketInsightsScheduler');
+initMarketInsightsScheduler();
+
 // Middleware
 app.use(cors());
 app.use(express.json());
