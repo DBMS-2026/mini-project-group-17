@@ -44,16 +44,6 @@ const exploreCards = [
     image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&q=80',
   },
   {
-    icon: MapPin,
-    title: 'Plots & Land',
-    description: 'Discover prime plots for development',
-    href: '/properties?type=plot',
-    color: 'from-rose-500 to-red-700',
-    bg: 'bg-rose-50',
-    iconColor: 'text-rose-600',
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80',
-  },
-  {
     icon: ArrowLeftRight,
     title: 'City Swap',
     description: 'Swap your lease across cities seamlessly',
@@ -72,38 +62,42 @@ export default function ExploreCards() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-nexus-600 text-sm font-semibold tracking-widest uppercase mb-3">GET STARTED</p>
-          <h2 className="section-title">Explore Real Estate Options</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Explore Real Estate Options</h2>
           <p className="text-gray-500 mt-3 max-w-lg mx-auto">
             Everything you need to find, buy, rent, or invest in Indian real estate
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {/* Updated grid: changed lg:grid-cols-6 to lg:grid-cols-5 and added justify-center */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 justify-center">
           {exploreCards.map((card) => (
             <Link
               key={card.title}
               href={card.href}
-              className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer"
+              className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer bg-gray-100"
             >
               <img
                 src={card.image}
                 alt={card.title}
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div className={`absolute inset-0 bg-linear-to-t ${card.color} opacity-80 group-hover:opacity-90 transition-opacity`} />
+              {/* Changed bg-linear-to-t to bg-gradient-to-t for standard Tailwind support */}
+              <div className={`absolute inset-0 bg-gradient-to-t ${card.color} opacity-80 group-hover:opacity-90 transition-opacity`} />
 
-              <div className="absolute inset-0 flex flex-col justify-end p-4">
+              <div className="absolute inset-0 flex flex-col justify-end p-4 z-10">
                 <card.icon className="w-6 h-6 text-white mb-2" />
-                <h3 className="text-white font-semibold text-sm leading-tight">{card.title}</h3>
+                <h3 className="text-white font-semibold text-sm md:text-base leading-tight">
+                  {card.title}
+                </h3>
                 {card.isNew && (
-                  <span className="mt-1 inline-block bg-gold-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase w-fit">
+                  <span className="mt-1 inline-block bg-yellow-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded uppercase w-fit">
                     New
                   </span>
                 )}
               </div>
 
-              <div className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <ArrowRight className="w-3.5 h-3.5 text-white" />
+              <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                <ArrowRight className="w-4 h-4 text-white" />
               </div>
             </Link>
           ))}
