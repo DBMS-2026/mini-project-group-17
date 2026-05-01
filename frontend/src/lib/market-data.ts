@@ -15,6 +15,11 @@ export interface LocalityData {
   category: "expensive" | "affordable";
 }
 
+export interface TrendPoint {
+  year: string;
+  [key: string]: any;
+}
+
 export interface UndervaluedProperty {
   id: string;
   title: string;
