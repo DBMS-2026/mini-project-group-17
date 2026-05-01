@@ -1,0 +1,1226 @@
+{
+  "mumbai": {
+    "localities": [
+      {
+        "name": "Bandra West",
+        "avgPrice": 42120,
+        "category": "expensive"
+      },
+      {
+        "name": "Worli",
+        "avgPrice": 38317,
+        "category": "expensive"
+      },
+      {
+        "name": "Juhu",
+        "avgPrice": 35704,
+        "category": "expensive"
+      },
+      {
+        "name": "Andheri West",
+        "avgPrice": 22527,
+        "category": "affordable"
+      },
+      {
+        "name": "Powai",
+        "avgPrice": 18906,
+        "category": "affordable"
+      },
+      {
+        "name": "Navi Mumbai",
+        "avgPrice": 9982,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "Andheri West Historical": 16388,
+        "Navi Mumbai Historical": 7084,
+        "Bandra West Historical": 30696,
+        "Powai Historical": 13842,
+        "Juhu Historical": 25751,
+        "Worli Historical": 28034
+      },
+      {
+        "year": "2015",
+        "Andheri West Historical": 17568,
+        "Navi Mumbai Historical": 7792,
+        "Bandra West Historical": 32924,
+        "Powai Historical": 14516,
+        "Juhu Historical": 27763,
+        "Worli Historical": 29391
+      },
+      {
+        "year": "2016",
+        "Andheri West Historical": 18474,
+        "Navi Mumbai Historical": 8223,
+        "Bandra West Historical": 34499,
+        "Powai Historical": 15306,
+        "Juhu Historical": 29751,
+        "Worli Historical": 30934
+      },
+      {
+        "year": "2017",
+        "Andheri West Historical": 19236,
+        "Navi Mumbai Historical": 8637,
+        "Bandra West Historical": 36509,
+        "Powai Historical": 16007,
+        "Juhu Historical": 30479,
+        "Worli Historical": 32568
+      },
+      {
+        "year": "2018",
+        "Andheri West Historical": 19944,
+        "Navi Mumbai Historical": 8864,
+        "Bandra West Historical": 38644,
+        "Powai Historical": 16945,
+        "Juhu Historical": 32202,
+        "Worli Historical": 35149
+      },
+      {
+        "year": "2019",
+        "Andheri West Historical": 21066,
+        "Navi Mumbai Historical": 9419,
+        "Bandra West Historical": 40135,
+        "Powai Historical": 17744,
+        "Juhu Historical": 33299,
+        "Worli Historical": 35917
+      },
+      {
+        "year": "2020",
+        "Andheri West Historical": 18323,
+        "Navi Mumbai Historical": 8203,
+        "Bandra West Historical": 34731,
+        "Powai Historical": 15975,
+        "Juhu Historical": 29522,
+        "Worli Historical": 31761
+      },
+      {
+        "year": "2021",
+        "Andheri West Historical": 19313,
+        "Navi Mumbai Historical": 8647,
+        "Bandra West Historical": 35571,
+        "Powai Historical": 15848,
+        "Juhu Historical": 30576,
+        "Worli Historical": 32146
+      },
+      {
+        "year": "2022",
+        "Andheri West Historical": 20619,
+        "Navi Mumbai Historical": 9121,
+        "Bandra West Historical": 39081,
+        "Powai Historical": 17215,
+        "Juhu Historical": 32392,
+        "Worli Historical": 35595
+      },
+      {
+        "year": "2023",
+        "Andheri West Historical": 22534,
+        "Navi Mumbai Historical": 9978,
+        "Bandra West Historical": 41605,
+        "Powai Historical": 18826,
+        "Juhu Historical": 35508,
+        "Worli Historical": 39005
+      },
+      {
+        "year": "2024",
+        "Andheri West Predicted": 24449,
+        "Navi Mumbai Predicted": 11132,
+        "Bandra West Predicted": 47133,
+        "Powai Predicted": 20732,
+        "Juhu Predicted": 38837,
+        "Worli Predicted": 42544
+      },
+      {
+        "year": "2025",
+        "Andheri West Predicted": 27712,
+        "Navi Mumbai Predicted": 11716,
+        "Bandra West Predicted": 49336,
+        "Powai Predicted": 22657,
+        "Juhu Predicted": 43946,
+        "Worli Predicted": 45998
+      },
+      {
+        "year": "2026",
+        "Andheri West Predicted": 29118,
+        "Navi Mumbai Predicted": 12705,
+        "Bandra West Predicted": 55807,
+        "Powai Predicted": 25603,
+        "Juhu Predicted": 50161,
+        "Worli Predicted": 52288
+      }
+    ]
+  },
+  "bangalore": {
+    "localities": [
+      {
+        "name": "Indiranagar",
+        "avgPrice": 15276,
+        "category": "expensive"
+      },
+      {
+        "name": "Koramangala",
+        "avgPrice": 13823,
+        "category": "expensive"
+      },
+      {
+        "name": "HSR Layout",
+        "avgPrice": 9340,
+        "category": "expensive"
+      },
+      {
+        "name": "Whitefield",
+        "avgPrice": 8259,
+        "category": "affordable"
+      },
+      {
+        "name": "Yelahanka",
+        "avgPrice": 6264,
+        "category": "affordable"
+      },
+      {
+        "name": "Electronic City",
+        "avgPrice": 5267,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "HSR Layout Historical": 6827,
+        "Yelahanka Historical": 4558,
+        "Indiranagar Historical": 11101,
+        "Electronic City Historical": 3835,
+        "Whitefield Historical": 5933,
+        "Koramangala Historical": 9817
+      },
+      {
+        "year": "2015",
+        "HSR Layout Historical": 7364,
+        "Yelahanka Historical": 4902,
+        "Indiranagar Historical": 11789,
+        "Electronic City Historical": 4063,
+        "Whitefield Historical": 6455,
+        "Koramangala Historical": 10890
+      },
+      {
+        "year": "2016",
+        "HSR Layout Historical": 7692,
+        "Yelahanka Historical": 5137,
+        "Indiranagar Historical": 12611,
+        "Electronic City Historical": 4287,
+        "Whitefield Historical": 6670,
+        "Koramangala Historical": 11392
+      },
+      {
+        "year": "2017",
+        "HSR Layout Historical": 7899,
+        "Yelahanka Historical": 5269,
+        "Indiranagar Historical": 12902,
+        "Electronic City Historical": 4422,
+        "Whitefield Historical": 6903,
+        "Koramangala Historical": 11835
+      },
+      {
+        "year": "2018",
+        "HSR Layout Historical": 8508,
+        "Yelahanka Historical": 5738,
+        "Indiranagar Historical": 13485,
+        "Electronic City Historical": 4751,
+        "Whitefield Historical": 7563,
+        "Koramangala Historical": 12670
+      },
+      {
+        "year": "2019",
+        "HSR Layout Historical": 9041,
+        "Yelahanka Historical": 5864,
+        "Indiranagar Historical": 14589,
+        "Electronic City Historical": 4940,
+        "Whitefield Historical": 7732,
+        "Koramangala Historical": 13325
+      },
+      {
+        "year": "2020",
+        "HSR Layout Historical": 7608,
+        "Yelahanka Historical": 5250,
+        "Indiranagar Historical": 12834,
+        "Electronic City Historical": 4393,
+        "Whitefield Historical": 6890,
+        "Koramangala Historical": 11477
+      },
+      {
+        "year": "2021",
+        "HSR Layout Historical": 7800,
+        "Yelahanka Historical": 5358,
+        "Indiranagar Historical": 13120,
+        "Electronic City Historical": 4530,
+        "Whitefield Historical": 7118,
+        "Koramangala Historical": 11918
+      },
+      {
+        "year": "2022",
+        "HSR Layout Historical": 8486,
+        "Yelahanka Historical": 5775,
+        "Indiranagar Historical": 13814,
+        "Electronic City Historical": 4846,
+        "Whitefield Historical": 7728,
+        "Koramangala Historical": 12800
+      },
+      {
+        "year": "2023",
+        "HSR Layout Historical": 9510,
+        "Yelahanka Historical": 6228,
+        "Indiranagar Historical": 15329,
+        "Electronic City Historical": 5230,
+        "Whitefield Historical": 8203,
+        "Koramangala Historical": 13851
+      },
+      {
+        "year": "2024",
+        "HSR Layout Predicted": 10449,
+        "Yelahanka Predicted": 6977,
+        "Indiranagar Predicted": 16685,
+        "Electronic City Predicted": 5872,
+        "Whitefield Predicted": 9190,
+        "Koramangala Predicted": 15181
+      },
+      {
+        "year": "2025",
+        "HSR Layout Predicted": 11537,
+        "Yelahanka Predicted": 7608,
+        "Indiranagar Predicted": 18466,
+        "Electronic City Predicted": 6233,
+        "Whitefield Predicted": 10302,
+        "Koramangala Predicted": 16719
+      },
+      {
+        "year": "2026",
+        "HSR Layout Predicted": 12722,
+        "Yelahanka Predicted": 8575,
+        "Indiranagar Predicted": 20239,
+        "Electronic City Predicted": 7210,
+        "Whitefield Predicted": 11575,
+        "Koramangala Predicted": 18666
+      }
+    ]
+  },
+  "delhi-ncr": {
+    "localities": [
+      {
+        "name": "Defence Colony",
+        "avgPrice": 31850,
+        "category": "expensive"
+      },
+      {
+        "name": "Vasant Vihar",
+        "avgPrice": 30376,
+        "category": "expensive"
+      },
+      {
+        "name": "Greater Kailash",
+        "avgPrice": 28873,
+        "category": "expensive"
+      },
+      {
+        "name": "Janakpuri",
+        "avgPrice": 12777,
+        "category": "affordable"
+      },
+      {
+        "name": "Rohini",
+        "avgPrice": 12037,
+        "category": "affordable"
+      },
+      {
+        "name": "Dwarka",
+        "avgPrice": 10533,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "Janakpuri Historical": 9211,
+        "Defence Colony Historical": 23205,
+        "Dwarka Historical": 7621,
+        "Rohini Historical": 8616,
+        "Greater Kailash Historical": 20835,
+        "Vasant Vihar Historical": 22261
+      },
+      {
+        "year": "2015",
+        "Janakpuri Historical": 10017,
+        "Defence Colony Historical": 24886,
+        "Dwarka Historical": 8121,
+        "Rohini Historical": 9297,
+        "Greater Kailash Historical": 22382,
+        "Vasant Vihar Historical": 23405
+      },
+      {
+        "year": "2016",
+        "Janakpuri Historical": 10619,
+        "Defence Colony Historical": 25982,
+        "Dwarka Historical": 8474,
+        "Rohini Historical": 9883,
+        "Greater Kailash Historical": 23883,
+        "Vasant Vihar Historical": 24701
+      },
+      {
+        "year": "2017",
+        "Janakpuri Historical": 10998,
+        "Defence Colony Historical": 27054,
+        "Dwarka Historical": 8828,
+        "Rohini Historical": 10213,
+        "Greater Kailash Historical": 24606,
+        "Vasant Vihar Historical": 25620
+      },
+      {
+        "year": "2018",
+        "Janakpuri Historical": 11389,
+        "Defence Colony Historical": 29008,
+        "Dwarka Historical": 9656,
+        "Rohini Historical": 11002,
+        "Greater Kailash Historical": 26500,
+        "Vasant Vihar Historical": 27709
+      },
+      {
+        "year": "2019",
+        "Janakpuri Historical": 11945,
+        "Defence Colony Historical": 30596,
+        "Dwarka Historical": 9926,
+        "Rohini Historical": 11333,
+        "Greater Kailash Historical": 27757,
+        "Vasant Vihar Historical": 29009
+      },
+      {
+        "year": "2020",
+        "Janakpuri Historical": 10447,
+        "Defence Colony Historical": 26918,
+        "Dwarka Historical": 8764,
+        "Rohini Historical": 9978,
+        "Greater Kailash Historical": 23517,
+        "Vasant Vihar Historical": 24946
+      },
+      {
+        "year": "2021",
+        "Janakpuri Historical": 10737,
+        "Defence Colony Historical": 27509,
+        "Dwarka Historical": 8784,
+        "Rohini Historical": 10067,
+        "Greater Kailash Historical": 24703,
+        "Vasant Vihar Historical": 26070
+      },
+      {
+        "year": "2022",
+        "Janakpuri Historical": 11559,
+        "Defence Colony Historical": 29641,
+        "Dwarka Historical": 9628,
+        "Rohini Historical": 10950,
+        "Greater Kailash Historical": 26839,
+        "Vasant Vihar Historical": 27529
+      },
+      {
+        "year": "2023",
+        "Janakpuri Historical": 12692,
+        "Defence Colony Historical": 32011,
+        "Dwarka Historical": 10346,
+        "Rohini Historical": 11892,
+        "Greater Kailash Historical": 28697,
+        "Vasant Vihar Historical": 30689
+      },
+      {
+        "year": "2024",
+        "Janakpuri Predicted": 14182,
+        "Defence Colony Predicted": 35530,
+        "Dwarka Predicted": 11573,
+        "Rohini Predicted": 13286,
+        "Greater Kailash Predicted": 32120,
+        "Vasant Vihar Predicted": 33582
+      },
+      {
+        "year": "2025",
+        "Janakpuri Predicted": 15797,
+        "Defence Colony Predicted": 37823,
+        "Dwarka Predicted": 13009,
+        "Rohini Predicted": 14568,
+        "Greater Kailash Predicted": 34176,
+        "Vasant Vihar Predicted": 35591
+      },
+      {
+        "year": "2026",
+        "Janakpuri Predicted": 16835,
+        "Defence Colony Predicted": 42961,
+        "Dwarka Predicted": 13973,
+        "Rohini Predicted": 16470,
+        "Greater Kailash Predicted": 39141,
+        "Vasant Vihar Predicted": 40086
+      }
+    ]
+  },
+  "hyderabad": {
+    "localities": [
+      {
+        "name": "Jubilee Hills",
+        "avgPrice": 16367,
+        "category": "expensive"
+      },
+      {
+        "name": "Banjara Hills",
+        "avgPrice": 14386,
+        "category": "expensive"
+      },
+      {
+        "name": "Madhapur",
+        "avgPrice": 11220,
+        "category": "expensive"
+      },
+      {
+        "name": "HITEC City",
+        "avgPrice": 10823,
+        "category": "affordable"
+      },
+      {
+        "name": "Gachibowli",
+        "avgPrice": 9439,
+        "category": "affordable"
+      },
+      {
+        "name": "Kukatpally",
+        "avgPrice": 6602,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "Jubilee Hills Historical": 11998,
+        "Madhapur Historical": 7973,
+        "Kukatpally Historical": 4733,
+        "Banjara Hills Historical": 10456,
+        "Gachibowli Historical": 6744,
+        "HITEC City Historical": 7803
+      },
+      {
+        "year": "2015",
+        "Jubilee Hills Historical": 12538,
+        "Madhapur Historical": 8728,
+        "Kukatpally Historical": 5185,
+        "Banjara Hills Historical": 11127,
+        "Gachibowli Historical": 7469,
+        "HITEC City Historical": 8584
+      },
+      {
+        "year": "2016",
+        "Jubilee Hills Historical": 13424,
+        "Madhapur Historical": 9339,
+        "Kukatpally Historical": 5455,
+        "Banjara Hills Historical": 11605,
+        "Gachibowli Historical": 7828,
+        "HITEC City Historical": 8959
+      },
+      {
+        "year": "2017",
+        "Jubilee Hills Historical": 13982,
+        "Madhapur Historical": 9607,
+        "Kukatpally Historical": 5505,
+        "Banjara Hills Historical": 12126,
+        "Gachibowli Historical": 8175,
+        "HITEC City Historical": 9336
+      },
+      {
+        "year": "2018",
+        "Jubilee Hills Historical": 14487,
+        "Madhapur Historical": 10018,
+        "Kukatpally Historical": 6021,
+        "Banjara Hills Historical": 13003,
+        "Gachibowli Historical": 8587,
+        "HITEC City Historical": 9787
+      },
+      {
+        "year": "2019",
+        "Jubilee Hills Historical": 15647,
+        "Madhapur Historical": 10580,
+        "Kukatpally Historical": 6229,
+        "Banjara Hills Historical": 13428,
+        "Gachibowli Historical": 9018,
+        "HITEC City Historical": 10147
+      },
+      {
+        "year": "2020",
+        "Jubilee Hills Historical": 13767,
+        "Madhapur Historical": 9206,
+        "Kukatpally Historical": 5485,
+        "Banjara Hills Historical": 12138,
+        "Gachibowli Historical": 7681,
+        "HITEC City Historical": 9046
+      },
+      {
+        "year": "2021",
+        "Jubilee Hills Historical": 14099,
+        "Madhapur Historical": 9461,
+        "Kukatpally Historical": 5681,
+        "Banjara Hills Historical": 12269,
+        "Gachibowli Historical": 8182,
+        "HITEC City Historical": 9356
+      },
+      {
+        "year": "2022",
+        "Jubilee Hills Historical": 15200,
+        "Madhapur Historical": 10470,
+        "Kukatpally Historical": 6184,
+        "Banjara Hills Historical": 13306,
+        "Gachibowli Historical": 8713,
+        "HITEC City Historical": 9838
+      },
+      {
+        "year": "2023",
+        "Jubilee Hills Historical": 16620,
+        "Madhapur Historical": 11335,
+        "Kukatpally Historical": 6523,
+        "Banjara Hills Historical": 14181,
+        "Gachibowli Historical": 9379,
+        "HITEC City Historical": 10728
+      },
+      {
+        "year": "2024",
+        "Jubilee Hills Predicted": 18030,
+        "Madhapur Predicted": 12507,
+        "Kukatpally Predicted": 7155,
+        "Banjara Hills Predicted": 16104,
+        "Gachibowli Predicted": 10558,
+        "HITEC City Predicted": 11870
+      },
+      {
+        "year": "2025",
+        "Jubilee Hills Predicted": 19796,
+        "Madhapur Predicted": 13770,
+        "Kukatpally Predicted": 8118,
+        "Banjara Hills Predicted": 17818,
+        "Gachibowli Predicted": 11722,
+        "HITEC City Predicted": 12678
+      },
+      {
+        "year": "2026",
+        "Jubilee Hills Predicted": 22876,
+        "Madhapur Predicted": 15379,
+        "Kukatpally Predicted": 8320,
+        "Banjara Hills Predicted": 19324,
+        "Gachibowli Predicted": 13023,
+        "HITEC City Predicted": 13937
+      }
+    ]
+  },
+  "pune": {
+    "localities": [
+      {
+        "name": "Koregaon Park",
+        "avgPrice": 22243,
+        "category": "expensive"
+      },
+      {
+        "name": "Kalyani Nagar",
+        "avgPrice": 19626,
+        "category": "expensive"
+      },
+      {
+        "name": "Baner",
+        "avgPrice": 11647,
+        "category": "expensive"
+      },
+      {
+        "name": "Viman Nagar",
+        "avgPrice": 10590,
+        "category": "affordable"
+      },
+      {
+        "name": "Wakad",
+        "avgPrice": 7554,
+        "category": "affordable"
+      },
+      {
+        "name": "Hinjewadi",
+        "avgPrice": 6690,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "Baner Historical": 8464,
+        "Wakad Historical": 5367,
+        "Kalyani Nagar Historical": 14301,
+        "Viman Nagar Historical": 7766,
+        "Koregaon Park Historical": 15985,
+        "Hinjewadi Historical": 4730
+      },
+      {
+        "year": "2015",
+        "Baner Historical": 9082,
+        "Wakad Historical": 5889,
+        "Kalyani Nagar Historical": 15507,
+        "Viman Nagar Historical": 8327,
+        "Koregaon Park Historical": 17527,
+        "Hinjewadi Historical": 5221
+      },
+      {
+        "year": "2016",
+        "Baner Historical": 9557,
+        "Wakad Historical": 6091,
+        "Kalyani Nagar Historical": 16342,
+        "Viman Nagar Historical": 8811,
+        "Koregaon Park Historical": 18052,
+        "Hinjewadi Historical": 5475
+      },
+      {
+        "year": "2017",
+        "Baner Historical": 9840,
+        "Wakad Historical": 6491,
+        "Kalyani Nagar Historical": 16726,
+        "Viman Nagar Historical": 9045,
+        "Koregaon Park Historical": 19201,
+        "Hinjewadi Historical": 5780
+      },
+      {
+        "year": "2018",
+        "Baner Historical": 10484,
+        "Wakad Historical": 6864,
+        "Kalyani Nagar Historical": 17903,
+        "Viman Nagar Historical": 9680,
+        "Koregaon Park Historical": 19980,
+        "Hinjewadi Historical": 6120
+      },
+      {
+        "year": "2019",
+        "Baner Historical": 10978,
+        "Wakad Historical": 7071,
+        "Kalyani Nagar Historical": 18410,
+        "Viman Nagar Historical": 10253,
+        "Koregaon Park Historical": 21345,
+        "Hinjewadi Historical": 6322
+      },
+      {
+        "year": "2020",
+        "Baner Historical": 9788,
+        "Wakad Historical": 6293,
+        "Kalyani Nagar Historical": 16469,
+        "Viman Nagar Historical": 8853,
+        "Koregaon Park Historical": 18804,
+        "Hinjewadi Historical": 5482
+      },
+      {
+        "year": "2021",
+        "Baner Historical": 9950,
+        "Wakad Historical": 6482,
+        "Kalyani Nagar Historical": 16395,
+        "Viman Nagar Historical": 9006,
+        "Koregaon Park Historical": 18910,
+        "Hinjewadi Historical": 5717
+      },
+      {
+        "year": "2022",
+        "Baner Historical": 10671,
+        "Wakad Historical": 7028,
+        "Kalyani Nagar Historical": 18273,
+        "Viman Nagar Historical": 9548,
+        "Koregaon Park Historical": 20405,
+        "Hinjewadi Historical": 6133
+      },
+      {
+        "year": "2023",
+        "Baner Historical": 11667,
+        "Wakad Historical": 7471,
+        "Kalyani Nagar Historical": 19267,
+        "Viman Nagar Historical": 10385,
+        "Koregaon Park Historical": 22291,
+        "Hinjewadi Historical": 6711
+      },
+      {
+        "year": "2024",
+        "Baner Predicted": 12940,
+        "Wakad Predicted": 8224,
+        "Kalyani Nagar Predicted": 21578,
+        "Viman Nagar Predicted": 11743,
+        "Koregaon Park Predicted": 24833,
+        "Hinjewadi Predicted": 7373
+      },
+      {
+        "year": "2025",
+        "Baner Predicted": 13834,
+        "Wakad Predicted": 9190,
+        "Kalyani Nagar Predicted": 24205,
+        "Viman Nagar Predicted": 12627,
+        "Koregaon Park Predicted": 27372,
+        "Hinjewadi Predicted": 8047
+      },
+      {
+        "year": "2026",
+        "Baner Predicted": 14681,
+        "Wakad Predicted": 10557,
+        "Kalyani Nagar Predicted": 26660,
+        "Viman Nagar Predicted": 13408,
+        "Koregaon Park Predicted": 30948,
+        "Hinjewadi Predicted": 9023
+      }
+    ]
+  },
+  "chennai": {
+    "localities": [
+      {
+        "name": "Boat Club",
+        "avgPrice": 34717,
+        "category": "expensive"
+      },
+      {
+        "name": "Poes Garden",
+        "avgPrice": 32040,
+        "category": "expensive"
+      },
+      {
+        "name": "Besant Nagar",
+        "avgPrice": 18673,
+        "category": "expensive"
+      },
+      {
+        "name": "Adyar",
+        "avgPrice": 16410,
+        "category": "affordable"
+      },
+      {
+        "name": "Velachery",
+        "avgPrice": 8398,
+        "category": "affordable"
+      },
+      {
+        "name": "OMR",
+        "avgPrice": 5480,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "Besant Nagar Historical": 13492,
+        "Boat Club Historical": 24726,
+        "Velachery Historical": 6033,
+        "OMR Historical": 3958,
+        "Adyar Historical": 11955,
+        "Poes Garden Historical": 23200
+      },
+      {
+        "year": "2015",
+        "Besant Nagar Historical": 14607,
+        "Boat Club Historical": 27134,
+        "Velachery Historical": 6608,
+        "OMR Historical": 4245,
+        "Adyar Historical": 12621,
+        "Poes Garden Historical": 25401
+      },
+      {
+        "year": "2016",
+        "Besant Nagar Historical": 15555,
+        "Boat Club Historical": 28025,
+        "Velachery Historical": 6914,
+        "OMR Historical": 4405,
+        "Adyar Historical": 13394,
+        "Poes Garden Historical": 26405
+      },
+      {
+        "year": "2017",
+        "Besant Nagar Historical": 15640,
+        "Boat Club Historical": 29965,
+        "Velachery Historical": 7128,
+        "OMR Historical": 4606,
+        "Adyar Historical": 14028,
+        "Poes Garden Historical": 26812
+      },
+      {
+        "year": "2018",
+        "Besant Nagar Historical": 17014,
+        "Boat Club Historical": 31848,
+        "Velachery Historical": 7578,
+        "OMR Historical": 4837,
+        "Adyar Historical": 14769,
+        "Poes Garden Historical": 28825
+      },
+      {
+        "year": "2019",
+        "Besant Nagar Historical": 17606,
+        "Boat Club Historical": 32747,
+        "Velachery Historical": 7840,
+        "OMR Historical": 5138,
+        "Adyar Historical": 15548,
+        "Poes Garden Historical": 30355
+      },
+      {
+        "year": "2020",
+        "Besant Nagar Historical": 15290,
+        "Boat Club Historical": 28695,
+        "Velachery Historical": 7037,
+        "OMR Historical": 4481,
+        "Adyar Historical": 13567,
+        "Poes Garden Historical": 26679
+      },
+      {
+        "year": "2021",
+        "Besant Nagar Historical": 15705,
+        "Boat Club Historical": 29974,
+        "Velachery Historical": 7201,
+        "OMR Historical": 4684,
+        "Adyar Historical": 13719,
+        "Poes Garden Historical": 27035
+      },
+      {
+        "year": "2022",
+        "Besant Nagar Historical": 17375,
+        "Boat Club Historical": 32297,
+        "Velachery Historical": 7876,
+        "OMR Historical": 5137,
+        "Adyar Historical": 14864,
+        "Poes Garden Historical": 29722
+      },
+      {
+        "year": "2023",
+        "Besant Nagar Historical": 18545,
+        "Boat Club Historical": 34707,
+        "Velachery Historical": 8456,
+        "OMR Historical": 5480,
+        "Adyar Historical": 16694,
+        "Poes Garden Historical": 32329
+      },
+      {
+        "year": "2024",
+        "Besant Nagar Predicted": 20419,
+        "Boat Club Predicted": 38550,
+        "Velachery Predicted": 9277,
+        "OMR Predicted": 6009,
+        "Adyar Predicted": 17830,
+        "Poes Garden Predicted": 35782
+      },
+      {
+        "year": "2025",
+        "Besant Nagar Predicted": 21915,
+        "Boat Club Predicted": 42114,
+        "Velachery Predicted": 10308,
+        "OMR Predicted": 6478,
+        "Adyar Predicted": 19226,
+        "Poes Garden Predicted": 38452
+      },
+      {
+        "year": "2026",
+        "Besant Nagar Predicted": 25064,
+        "Boat Club Predicted": 48752,
+        "Velachery Predicted": 10750,
+        "OMR Predicted": 6971,
+        "Adyar Predicted": 21066,
+        "Poes Garden Predicted": 44961
+      }
+    ]
+  },
+  "gurgaon": {
+    "localities": [
+      {
+        "name": "Golf Course Road",
+        "avgPrice": 21626,
+        "category": "expensive"
+      },
+      {
+        "name": "DLF Phase 5",
+        "avgPrice": 18823,
+        "category": "expensive"
+      },
+      {
+        "name": "Cyber City",
+        "avgPrice": 15746,
+        "category": "expensive"
+      },
+      {
+        "name": "Sector 56",
+        "avgPrice": 9377,
+        "category": "affordable"
+      },
+      {
+        "name": "Sohna Road",
+        "avgPrice": 8694,
+        "category": "affordable"
+      },
+      {
+        "name": "Palam Vihar",
+        "avgPrice": 7896,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "Cyber City Historical": 11508,
+        "DLF Phase 5 Historical": 13412,
+        "Sohna Road Historical": 6383,
+        "Golf Course Road Historical": 15321,
+        "Sector 56 Historical": 6631,
+        "Palam Vihar Historical": 5740
+      },
+      {
+        "year": "2015",
+        "Cyber City Historical": 12510,
+        "DLF Phase 5 Historical": 14591,
+        "Sohna Road Historical": 6877,
+        "Golf Course Road Historical": 16947,
+        "Sector 56 Historical": 7404,
+        "Palam Vihar Historical": 6052
+      },
+      {
+        "year": "2016",
+        "Cyber City Historical": 12715,
+        "DLF Phase 5 Historical": 15141,
+        "Sohna Road Historical": 7151,
+        "Golf Course Road Historical": 17871,
+        "Sector 56 Historical": 7678,
+        "Palam Vihar Historical": 6564
+      },
+      {
+        "year": "2017",
+        "Cyber City Historical": 13199,
+        "DLF Phase 5 Historical": 16243,
+        "Sohna Road Historical": 7383,
+        "Golf Course Road Historical": 18696,
+        "Sector 56 Historical": 7819,
+        "Palam Vihar Historical": 6774
+      },
+      {
+        "year": "2018",
+        "Cyber City Historical": 14245,
+        "DLF Phase 5 Historical": 16895,
+        "Sohna Road Historical": 7906,
+        "Golf Course Road Historical": 19130,
+        "Sector 56 Historical": 8361,
+        "Palam Vihar Historical": 7138
+      },
+      {
+        "year": "2019",
+        "Cyber City Historical": 15004,
+        "DLF Phase 5 Historical": 18049,
+        "Sohna Road Historical": 8202,
+        "Golf Course Road Historical": 20805,
+        "Sector 56 Historical": 8854,
+        "Palam Vihar Historical": 7497
+      },
+      {
+        "year": "2020",
+        "Cyber City Historical": 13033,
+        "DLF Phase 5 Historical": 15586,
+        "Sohna Road Historical": 7146,
+        "Golf Course Road Historical": 18227,
+        "Sector 56 Historical": 7803,
+        "Palam Vihar Historical": 6503
+      },
+      {
+        "year": "2021",
+        "Cyber City Historical": 13399,
+        "DLF Phase 5 Historical": 15889,
+        "Sohna Road Historical": 7409,
+        "Golf Course Road Historical": 18316,
+        "Sector 56 Historical": 7820,
+        "Palam Vihar Historical": 6777
+      },
+      {
+        "year": "2022",
+        "Cyber City Historical": 14507,
+        "DLF Phase 5 Historical": 17269,
+        "Sohna Road Historical": 8018,
+        "Golf Course Road Historical": 20288,
+        "Sector 56 Historical": 8525,
+        "Palam Vihar Historical": 7148
+      },
+      {
+        "year": "2023",
+        "Cyber City Historical": 15669,
+        "DLF Phase 5 Historical": 18829,
+        "Sohna Road Historical": 8628,
+        "Golf Course Road Historical": 21380,
+        "Sector 56 Historical": 9248,
+        "Palam Vihar Historical": 7751
+      },
+      {
+        "year": "2024",
+        "Cyber City Predicted": 17598,
+        "DLF Phase 5 Predicted": 20946,
+        "Sohna Road Predicted": 9659,
+        "Golf Course Road Predicted": 23613,
+        "Sector 56 Predicted": 10270,
+        "Palam Vihar Predicted": 8542
+      },
+      {
+        "year": "2025",
+        "Cyber City Predicted": 19169,
+        "DLF Phase 5 Predicted": 22078,
+        "Sohna Road Predicted": 10729,
+        "Golf Course Road Predicted": 25728,
+        "Sector 56 Predicted": 11305,
+        "Palam Vihar Predicted": 9757
+      },
+      {
+        "year": "2026",
+        "Cyber City Predicted": 22109,
+        "DLF Phase 5 Predicted": 24066,
+        "Sohna Road Predicted": 11681,
+        "Golf Course Road Predicted": 29634,
+        "Sector 56 Predicted": 12991,
+        "Palam Vihar Predicted": 10658
+      }
+    ]
+  },
+  "noida": {
+    "localities": [
+      {
+        "name": "Sector 15",
+        "avgPrice": 14140,
+        "category": "expensive"
+      },
+      {
+        "name": "Sector 44",
+        "avgPrice": 12055,
+        "category": "expensive"
+      },
+      {
+        "name": "Sector 50",
+        "avgPrice": 11668,
+        "category": "expensive"
+      },
+      {
+        "name": "Sector 62",
+        "avgPrice": 8766,
+        "category": "affordable"
+      },
+      {
+        "name": "Sector 137",
+        "avgPrice": 6557,
+        "category": "affordable"
+      },
+      {
+        "name": "Noida Extension",
+        "avgPrice": 4628,
+        "category": "affordable"
+      }
+    ],
+    "trendPoints": [
+      {
+        "year": "2014",
+        "Sector 44 Historical": 8756,
+        "Sector 50 Historical": 8332,
+        "Sector 15 Historical": 10115,
+        "Sector 62 Historical": 6376,
+        "Noida Extension Historical": 3392,
+        "Sector 137 Historical": 4633
+      },
+      {
+        "year": "2015",
+        "Sector 44 Historical": 9226,
+        "Sector 50 Historical": 8924,
+        "Sector 15 Historical": 11157,
+        "Sector 62 Historical": 6872,
+        "Noida Extension Historical": 3643,
+        "Sector 137 Historical": 5104
+      },
+      {
+        "year": "2016",
+        "Sector 44 Historical": 10056,
+        "Sector 50 Historical": 9449,
+        "Sector 15 Historical": 11372,
+        "Sector 62 Historical": 7295,
+        "Noida Extension Historical": 3817,
+        "Sector 137 Historical": 5457
+      },
+      {
+        "year": "2017",
+        "Sector 44 Historical": 10327,
+        "Sector 50 Historical": 9738,
+        "Sector 15 Historical": 12238,
+        "Sector 62 Historical": 7315,
+        "Noida Extension Historical": 4008,
+        "Sector 137 Historical": 5614
+      },
+      {
+        "year": "2018",
+        "Sector 44 Historical": 10750,
+        "Sector 50 Historical": 10393,
+        "Sector 15 Historical": 12503,
+        "Sector 62 Historical": 7760,
+        "Noida Extension Historical": 4237,
+        "Sector 137 Historical": 5793
+      },
+      {
+        "year": "2019",
+        "Sector 44 Historical": 11325,
+        "Sector 50 Historical": 10930,
+        "Sector 15 Historical": 13418,
+        "Sector 62 Historical": 8171,
+        "Noida Extension Historical": 4441,
+        "Sector 137 Historical": 6173
+      },
+      {
+        "year": "2020",
+        "Sector 44 Historical": 10142,
+        "Sector 50 Historical": 9689,
+        "Sector 15 Historical": 11645,
+        "Sector 62 Historical": 7274,
+        "Noida Extension Historical": 3832,
+        "Sector 137 Historical": 5345
+      },
+      {
+        "year": "2021",
+        "Sector 44 Historical": 10366,
+        "Sector 50 Historical": 10079,
+        "Sector 15 Historical": 12233,
+        "Sector 62 Historical": 7596,
+        "Noida Extension Historical": 3969,
+        "Sector 137 Historical": 5677
+      },
+      {
+        "year": "2022",
+        "Sector 44 Historical": 11010,
+        "Sector 50 Historical": 10843,
+        "Sector 15 Historical": 12939,
+        "Sector 62 Historical": 7923,
+        "Noida Extension Historical": 4244,
+        "Sector 137 Historical": 6122
+      },
+      {
+        "year": "2023",
+        "Sector 44 Historical": 11947,
+        "Sector 50 Historical": 11768,
+        "Sector 15 Historical": 14178,
+        "Sector 62 Historical": 8649,
+        "Noida Extension Historical": 4697,
+        "Sector 137 Historical": 6621
+      },
+      {
+        "year": "2024",
+        "Sector 44 Predicted": 13135,
+        "Sector 50 Predicted": 12823,
+        "Sector 15 Predicted": 15531,
+        "Sector 62 Predicted": 9571,
+        "Noida Extension Predicted": 5097,
+        "Sector 137 Predicted": 7161
+      },
+      {
+        "year": "2025",
+        "Sector 44 Predicted": 14877,
+        "Sector 50 Predicted": 13856,
+        "Sector 15 Predicted": 17294,
+        "Sector 62 Predicted": 10561,
+        "Noida Extension Predicted": 5721,
+        "Sector 137 Predicted": 7676
+      },
+      {
+        "year": "2026",
+        "Sector 44 Predicted": 16106,
+        "Sector 50 Predicted": 16294,
+        "Sector 15 Predicted": 18938,
+        "Sector 62 Predicted": 12184,
+        "Noida Extension Predicted": 6390,
+        "Sector 137 Predicted": 8991
+      }
+    ]
+  }
+}
