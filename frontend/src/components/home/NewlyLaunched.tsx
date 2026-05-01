@@ -12,7 +12,7 @@ export default function NewlyLaunched() {
   const placeholderImage = 'https://via.placeholder.com/1200x800?text=Property'
 
   return (
-    <section className="py-16 bg-linear-to-b from-nexus-50/50 to-white">
+    <section className="py-16 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-14">
           <div className="flex items-end justify-between mb-8">
@@ -37,9 +37,8 @@ export default function NewlyLaunched() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
-                  <span className={`absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-lg ${
-                    property.tag === 'NEW LAUNCH' ? 'bg-nexus-600 text-white' : 'bg-emerald-500 text-white'
-                  }`}>
+                  <span className={`absolute top-3 left-3 text-xs font-bold px-2.5 py-1 rounded-lg ${property.tag === 'NEW LAUNCH' ? 'bg-nexus-600 text-white' : 'bg-emerald-500 text-white'
+                    }`}>
                     {property.tag}
                   </span>
                   {property.isRera && (

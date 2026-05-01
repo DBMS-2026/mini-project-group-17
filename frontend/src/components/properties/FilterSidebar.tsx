@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import { SlidersHorizontal, X, ChevronDown, ChevronUp } from "lucide-react";
 import { INDIAN_CITIES } from "@/lib/data";
 
-interface FilterState {
+export interface FilterState {
   city: string;
   type: string;
   minPrice: number;
@@ -18,7 +18,7 @@ interface FilterState {
   postedBy: string;
 }
 
-const defaultFilters: FilterState = {
+export const defaultFilters: FilterState = {
   city: "",
   type: "",
   minPrice: 0,
@@ -78,6 +78,10 @@ export function FilterSidebar({
   const update = (key: keyof FilterState, value: any) =>
     onChange({ ...filters, [key]: value });
 
+  // ✅ Fixed: updates both minPrice and maxPrice in ONE onChange call
+  const updatePrice = (min: number, max: number) =>
+    onChange({ ...filters, minPrice: min, maxPrice: max });
+
   const toggleBedroom = (val: string) => {
     const beds = filters.bedrooms.includes(val)
       ? filters.bedrooms.filter((b) => b !== val)
@@ -127,7 +131,7 @@ export function FilterSidebar({
         <select
           value={filters.city}
           onChange={(e) => update("city", e.target.value)}
-          className="w-full input-nexus text-sm"
+          className="w-full input-nexus text-sm text-black"
         >
           <option value="">All India</option>
           {INDIAN_CITIES.map((city) => (
@@ -140,32 +144,28 @@ export function FilterSidebar({
 
       <FilterSection title="Property Type">
         <div className="flex flex-wrap gap-2">
-          {[
-            "Apartment",
-            "Villa",
-            "Builder Floor",
-            "Plot",
-            "Commercial",
-          ].map((type) => (
-            <button
-              key={type}
-              onClick={() =>
-                update(
-                  "type",
+          {["Apartment", "Villa", "Builder Floor", "Plot", "Commercial"].map(
+            (type) => (
+              <button
+                key={type}
+                onClick={() =>
+                  update(
+                    "type",
+                    filters.type === type.toLowerCase().replace(" ", "-")
+                      ? ""
+                      : type.toLowerCase().replace(" ", "-")
+                  )
+                }
+                className={`px-3 py-1.5 text-xs rounded-xl border transition-all ${
                   filters.type === type.toLowerCase().replace(" ", "-")
-                    ? ""
-                    : type.toLowerCase().replace(" ", "-")
-                )
-              }
-              className={`px-3 py-1.5 text-xs rounded-xl border transition-all ${
-                filters.type === type.toLowerCase().replace(" ", "-")
-                  ? "bg-nexus-600 border-nexus-600 text-white"
-                  : "border-gray-200 text-gray-600 hover:border-nexus-300"
-              }`}
-            >
-              {type}
-            </button>
-          ))}
+                    ? "bg-nexus-600 border-nexus-600 text-white"
+                    : "border-gray-200 text-gray-600 hover:border-nexus-300"
+                }`}
+              >
+                {type}
+              </button>
+            )
+          )}
         </div>
       </FilterSection>
 
@@ -187,50 +187,46 @@ export function FilterSidebar({
         </div>
       </FilterSection>
 
+      {/* ✅ Fixed Budget Section */}
       <FilterSection title="Budget">
-        <div className="space-y-2">
+        <div className="flex flex-wrap gap-2">
           {priceOptions.map((opt) => (
-            <label key={opt.label} className="flex items-center gap-2 cursor-pointer group">
-              <input
-                type="radio"
-                name="price"
-                checked={
-                  filters.minPrice === opt.min && filters.maxPrice === opt.max
-                }
-                onChange={() => {
-                  update("minPrice", opt.min);
-                  update("maxPrice", opt.max);
-                }}
-                className="accent-nexus-600"
-              />
-              <span className="text-sm text-gray-700 group-hover:text-nexus-600 transition-colors">
-                {opt.label}
-              </span>
-            </label>
+            <button
+              key={opt.label}
+              type="button"
+              onClick={() => updatePrice(opt.min, opt.max)}
+              className={`px-3 py-2 text-xs rounded-xl border transition-all ${
+                filters.minPrice === opt.min && filters.maxPrice === opt.max
+                  ? "bg-nexus-600 border-nexus-600 text-white"
+                  : "border-gray-200 text-gray-600 hover:border-nexus-300"
+              }`}
+            >
+              {opt.label}
+            </button>
           ))}
         </div>
       </FilterSection>
 
       <FilterSection title="Possession Status">
-        <div className="space-y-2">
+        <div className="flex flex-wrap gap-2">
           {[
             { value: "", label: "All" },
             { value: "ready-to-move", label: "Ready to Move" },
             { value: "under-construction", label: "Under Construction" },
             { value: "new-launch", label: "New Launch" },
           ].map((opt) => (
-            <label key={opt.value} className="flex items-center gap-2 cursor-pointer group">
-              <input
-                type="radio"
-                name="status"
-                checked={filters.status === opt.value}
-                onChange={() => update("status", opt.value)}
-                className="accent-nexus-600"
-              />
-              <span className="text-sm text-gray-700 group-hover:text-nexus-600 transition-colors">
-                {opt.label}
-              </span>
-            </label>
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => update("status", opt.value)}
+              className={`px-3 py-2 text-xs rounded-xl border transition-all ${
+                filters.status === opt.value
+                  ? "bg-nexus-600 border-nexus-600 text-white"
+                  : "border-gray-200 text-gray-600 hover:border-nexus-300"
+              }`}
+            >
+              {opt.label}
+            </button>
           ))}
         </div>
       </FilterSection>
@@ -267,11 +263,17 @@ export function FilterSidebar({
       <FilterSection title="Posted By" defaultOpen={false}>
         <div className="space-y-2">
           {["All", "Builder", "Owner", "Agent"].map((opt) => (
-            <label key={opt} className="flex items-center gap-2 cursor-pointer group">
+            <label
+              key={opt}
+              className="flex items-center gap-2 cursor-pointer group"
+            >
               <input
                 type="radio"
                 name="postedBy"
-                checked={filters.postedBy === (opt === "All" ? "" : opt.toLowerCase())}
+                checked={
+                  filters.postedBy ===
+                  (opt === "All" ? "" : opt.toLowerCase())
+                }
                 onChange={() =>
                   update("postedBy", opt === "All" ? "" : opt.toLowerCase())
                 }
@@ -307,6 +309,4 @@ export function FilterSidebar({
   );
 }
 
-export type { FilterState };
-export { defaultFilters };
 export default FilterSidebar;
