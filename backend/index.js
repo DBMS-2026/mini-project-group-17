@@ -1,7 +1,8 @@
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
 const { initSockets } = require('./sockets/socketHandler');
 const transactionService = require('./services/transactionService');

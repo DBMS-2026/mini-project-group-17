@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAppStore } from '@/store/useAppStore';
 
 export default function AddPropertyPage() {
   const router = useRouter();
-
   const [formData, setFormData] = useState({
     title: '',
     city: 'Mumbai',
@@ -29,9 +29,13 @@ export default function AddPropertyPage() {
     setSuccessMsg('');
 
     try {
+      const token = localStorage.getItem('nexus_token');
       const res = await fetch('http://localhost:3001/api/listings/create-swap', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        },
         body: JSON.stringify({
           userId: 1,
           title: formData.title,

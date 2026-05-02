@@ -8,6 +8,7 @@ import { ChevronDown, Menu, X, User, Heart,
   LogOut, ArrowLeftRight, BarChart3,
   Home, Building2, Key, TrendingUp, MapPin, Settings } from 'lucide-react'
 import NotificationBell from '@/components/layout/NotificationBell'
+import ContactModal from '@/components/layout/ContactModal'
 
 const navLinks = [
   {
@@ -45,6 +46,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [profileOpen, setProfileOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [contactModalOpen, setContactModalOpen] = useState(false)
   const profileRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -94,31 +96,49 @@ export default function Navbar() {
                   onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <Link
-                    href={link.href}
-                    className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[13px] font-medium whitespace-nowrap transition-all ${
-                      link.highlight
-                        ? 'text-nexus-600 hover:bg-nexus-50'
-                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                    }`}
-                  >
-                    {link.icon && <link.icon className="w-3.5 h-3.5 flex-shrink-0" />}
-                    <span>{link.label}</span>
-                    {link.badge && (
-                      <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wide ${
-                        link.badge === 'AI'
-                          ? 'bg-nexus-600 text-white'
-                          : 'bg-amber-400 text-amber-900'
-                      }`}>
-                        {link.badge}
-                      </span>
-                    )}
-                    {link.dropdown && (
-                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 flex-shrink-0 ${
-                        activeDropdown === link.label ? 'rotate-180' : ''
-                      }`} />
-                    )}
-                  </Link>
+                  {link.label === 'Contact' ? (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setContactModalOpen(true)
+                      }}
+                      className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[13px] font-medium whitespace-nowrap transition-all ${
+                        link.highlight
+                          ? 'text-nexus-600 hover:bg-nexus-50'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      {link.icon && <link.icon className="w-3.5 h-3.5 flex-shrink-0" />}
+                      <span>{link.label}</span>
+                    </button>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[13px] font-medium whitespace-nowrap transition-all ${
+                        link.highlight
+                          ? 'text-nexus-600 hover:bg-nexus-50'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      }`}
+                    >
+                      {link.icon && <link.icon className="w-3.5 h-3.5 flex-shrink-0" />}
+                      <span>{link.label}</span>
+                      {link.badge && (
+                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wide ${
+                          link.badge === 'AI'
+                            ? 'bg-nexus-600 text-white'
+                            : 'bg-amber-400 text-amber-900'
+                        }`}>
+                          {link.badge}
+                        </span>
+                      )}
+                      {link.dropdown && (
+                        <ChevronDown className={`w-3 h-3 transition-transform duration-200 flex-shrink-0 ${
+                          activeDropdown === link.label ? 'rotate-180' : ''
+                        }`} />
+                      )}
+                    </Link>
+                  )}
+
 
                   {/* Dropdown */}
                   {link.dropdown && (
@@ -236,25 +256,43 @@ export default function Navbar() {
         {mobileOpen && (
           <div className="lg:hidden bg-white border-t border-gray-100 py-3 px-4 space-y-0.5 max-h-[80vh] overflow-y-auto shadow-xl">
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                  link.highlight ? 'text-nexus-600 hover:bg-nexus-50' : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                {link.icon && <link.icon className="w-4 h-4" />}
-                {link.label}
-                {link.badge && (
-                  <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase ${
-                    link.badge === 'AI' ? 'bg-nexus-600 text-white' : 'bg-amber-400 text-amber-900'
-                  }`}>
-                    {link.badge}
-                  </span>
-                )}
-              </Link>
+              link.label === 'Contact' ? (
+                <button
+                  key={link.label}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setMobileOpen(false)
+                    setContactModalOpen(true)
+                  }}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors w-full text-left ${
+                    link.highlight ? 'text-nexus-600 hover:bg-nexus-50' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  {link.icon && <link.icon className="w-4 h-4" />}
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                    link.highlight ? 'text-nexus-600 hover:bg-nexus-50' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                >
+                  {link.icon && <link.icon className="w-4 h-4" />}
+                  {link.label}
+                  {link.badge && (
+                    <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase ${
+                      link.badge === 'AI' ? 'bg-nexus-600 text-white' : 'bg-amber-400 text-amber-900'
+                    }`}>
+                      {link.badge}
+                    </span>
+                  )}
+                </Link>
+              )
             ))}
+
             <div className="pt-3 border-t border-gray-100 space-y-2">
               {isAuthenticated ? (
                 <>
@@ -283,6 +321,10 @@ export default function Navbar() {
         )}
       </nav>
       <div className="h-[60px]" />
+
+      {contactModalOpen && (
+        <ContactModal onClose={() => setContactModalOpen(false)} />
+      )}
     </>
   )
 }
