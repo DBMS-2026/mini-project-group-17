@@ -1,146 +1,136 @@
-# NexusEstate — PropTech Platform
+# 🏙️ NexusEstate
 
-A full-stack monorepo for the **NexusEstate** property management and lease swap platform. Built with Next.js, Node.js, and two Python microservices.
+> **NexusEstate** is a next-generation, full-stack PropTech platform that leverages Machine Learning to revolutionize real estate discovery. By integrating AI-driven desirability scoring, real-time price anomaly detection, and smart similarity recommendations, NexusEstate helps buyers, renters, and investors make data-backed decisions.
+
+<div align="center">
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Scikit-learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+
+</div>
 
 ---
 
-## 🏗️ Architecture
+## ✨ Features
 
-```
-NexusEstate/
-├── frontend/          Next.js 14 + TypeScript + Tailwind    [PORT 3000]
-├── backend/           Node.js Express + Socket.io + JWT      [PORT 3001]
-├── swap-engine/       Python FastAPI — Graph Cycle Detection  [PORT 8001]
-├── ai-service/        Python FastAPI — ML Valuation & Fraud   [PORT 8000]
-├── nexusestate.sql    Shared PostgreSQL schema
-└── docker-compose.yml Orchestrates all services + DB
-```
+### 🧠 AI & Machine Learning Integration
+- **Smart Sorting & Desirability Scoring**: Ranks properties based on a dynamic algorithm evaluating user-selected amenities (Pool, Gym, Clubhouse) and proximity to transit (Metro, Bus, Highway).
+- **Price Anomaly & Fraud Detection**: Uses an `Isolation Forest` machine learning model to flag artificially inflated or suspiciously low property listings.
+- **Similar Property Recommendations**: Suggests alternative properties using a multi-dimensional nearest-neighbor search based on price, area, and BHK.
+- **Real-time AI Validation**: The search bar queries the ML model to ensure users only search within supported data-rich cities.
 
-### Service Responsibilities
+### 💻 Full-Stack Architecture
+- **Interactive UI**: Built with Next.js and Tailwind CSS for a highly responsive, modern, and aesthetic user experience.
+- **Robust Relational Database**: PostgreSQL backend storing highly detailed schemas (over 30 data points per property, including RERA status, facing, and distances).
+- **Authentic Data Source**: Pre-seeded with over 1,250 genuine property listings sourced from a Kaggle 25-City Indian Housing dataset.
+- **Secure Authentication**: Custom JWT email authentication paired with Google OAuth integration.
 
-| Service | Tech | Purpose |
-|---|---|---|
-| **frontend** | Next.js 14, TypeScript, TailwindCSS | User interface — property listings, swap board, AI valuation dashboard |
-| **backend** | Node.js, Express, Socket.io, PostgreSQL | Auth (JWT), CRUD for properties/swaps, ACID-compliant swap execution, real-time notifications |
-| **swap-engine** | Python, FastAPI | Recursive graph traversal to detect valid multi-party lease swap cycles (Bellman-Ford variant) |
-| **ai-service** | Python, FastAPI, scikit-learn | ML property valuation (RandomForest, 45MB model trained on 100k Indian housing rows), fraud detection (IsolationForest), desirability scoring |
+---
+
+## 🛠️ Technology Stack
+
+| Component | Technology |
+| :--- | :--- |
+| **Frontend** | Next.js 15, React, Tailwind CSS, Zustand, Lucide React |
+| **Backend API** | Node.js, Express, Socket.io (WebSockets) |
+| **Database** | PostgreSQL (`pg` module) |
+| **AI Microservice** | Python, FastAPI, Scikit-Learn, Pandas, Joblib |
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 20+
-- Python 3.11+
-- PostgreSQL 16
-- Docker & Docker Compose (optional but recommended)
+Make sure you have the following installed on your machine:
+- [Node.js](https://nodejs.org/en/) (v18+)
+- [Python](https://www.python.org/downloads/) (3.9+)
+- [PostgreSQL](https://www.postgresql.org/download/) (v14+)
 
-### Option A — Docker (Recommended)
+### 1. Database Setup
+1. Open pgAdmin or your terminal and create a database named `nexusestate`.
+2. Navigate to the `backend` directory and install dependencies:
+   ```bash
+   cd backend
+   npm install
+   ```
+3. Run the database seed script to populate the Kaggle dataset:
+   ```bash
+   node import_csv_to_db.js
+   ```
 
-```bash
-# 1. Copy environment template
-cp .env.example .env
-# Edit .env with your DB password and JWT secret
+### 2. Python AI Microservice
+1. Navigate to the `ai-service` directory:
+   ```bash
+   cd ai-service
+   ```
+2. Install the required Python packages:
+   ```bash
+   pip install fastapi uvicorn pandas scikit-learn joblib
+   ```
+3. Start the FastAPI server (Runs on port 8000):
+   ```bash
+   uvicorn main:app --reload
+   ```
 
-# 2. Start all services
-docker compose up --build
-```
+### 3. Node.js Backend Server
+1. Open a new terminal, navigate to the `backend` directory.
+2. Start the Express server (Runs on port 5000):
+   ```bash
+   npm run dev
+   ```
 
-All 4 services + PostgreSQL will start automatically.
+### 4. Next.js Frontend
+1. Open a new terminal, navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+   npm install
+   ```
+2. Start the development server (Runs on port 3000):
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) in your browser!
 
-### Option B — Manual (Local Dev)
+---
 
-**1. Database**
-```bash
-psql -U postgres -c "CREATE DATABASE nexusestate;"
-psql -U postgres -d nexusestate -f nexusestate.sql
-```
+## 📁 Project Structure
 
-**2. Backend**
-```bash
-cd backend
-npm install
-cp ../.env.example .env   # edit as needed
-npm run dev               # runs on port 3001
-```
-
-**3. Swap Engine**
-```bash
-cd swap-engine
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8001
-```
-
-**4. AI Service**
-```bash
-cd ai-service
-pip install -r requirements.txt
-# Models are pre-trained (.pkl files included)
-uvicorn main:app --reload --port 8000
-```
-
-**5. Frontend**
-```bash
-cd frontend
-npm install
-npm run dev               # runs on port 3000
+```text
+DBMS_Project/
+├── ai-service/              # Python FastAPI Microservice
+│   ├── main.py              # ML Endpoints (Fraud detection, Ranking)
+│   ├── fraud_pipeline.pkl   # Pre-trained ML Model
+│   └── kaggle_indian_housing_25_cities.csv # Raw Dataset
+├── backend/                 # Node.js Express Server
+│   ├── controllers/         # API Route Handlers
+│   ├── models/              # PostgreSQL Queries (PropertyModel, etc.)
+│   ├── routes/              # Express API Routes
+│   └── import_csv_to_db.js  # DB Seeding Script
+└── frontend/                # Next.js App
+    ├── src/app/             # Pages & Routing
+    ├── src/components/      # Reusable React Components (Hero, Cards)
+    ├── src/lib/             # API Fetch functions & Utilities
+    └── src/store/           # Zustand State Management
 ```
 
 ---
 
-## 🤖 ML Models (ai-service)
-
-The AI service ships with three pre-trained scikit-learn models:
-
-| Model File | Algorithm | Purpose |
-|---|---|---|
-| `valuation_model.pkl` | RandomForest Regressor | Predict true market price from property features |
-| `fraud_model.pkl` | IsolationForest | Detect anomalous/fraudulent listings |
-| `fraud_pipeline.pkl` | Pipeline (OHE + IF) | End-to-end fraud scoring pipeline |
-
-**Training data:** 100,000 rows across 25 Indian cities (Kaggle Indian Housing dataset, augmented).
-
-To retrain: `cd ai-service && python train_model.py`
+## 🤝 Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## 📡 API Endpoints
-
-### Backend (port 3001)
-| Method | Path | Description |
-|---|---|---|
-| GET | `/health` | Health check |
-| POST | `/api/auth/register` | User registration |
-| POST | `/api/auth/login` | Login (returns JWT) |
-| GET | `/api/properties` | List properties |
-| POST | `/api/swaps/match` | Find matching swaps |
-| POST | `/api/swaps/execute` | Execute ACID multi-party swap |
-| POST | `/api/cycles/detect` | Bridge → Python swap engine |
-
-### Swap Engine (port 8001)
-| Method | Path | Description |
-|---|---|---|
-| GET | `/health` | Health check |
-| POST | `/api/cycles/detect` | Detect swap cycles in graph |
-
-### AI Service (port 8000)
-| Method | Path | Description |
-|---|---|---|
-| POST | `/predict` | Property valuation |
-| POST | `/analyze-fraud` | Fraud/anomaly detection |
-| POST | `/desirability-score` | Amenity + proximity score |
-| POST | `/similar-properties` | Similar property suggestions |
-
----
-
-## 🗃️ Database
-
-Schema: `nexusestate.sql` — initialize once and mount into Docker via `docker-compose.yml`.
-
-Key tables: `Users`, `Properties`, `Swap_Requests`, `Successful_Swaps`, `Swap_Log_Entries`
-
----
-
-## 👥 Team
-
-Built as a collaborative DBMS project. Frontend + Swap Engine by primary team. Node.js Backend + AI Service by collaborator.
+## 📝 License
+Distributed under the MIT License. See `LICENSE` for more information.
