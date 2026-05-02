@@ -34,6 +34,15 @@ export default function AuthPage() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("mode") === "register") {
+        setMode("register");
+      }
+    }
+  }, []);
+
   function set(field: keyof typeof form, value: string) {
     setForm((f) => ({ ...f, [field]: value }));
   }
@@ -131,7 +140,7 @@ export default function AuthPage() {
         </div>
 
         {/* Card with glass morphism */}
-        <div className="rounded-3xl border border-blue-200/50 bg-white/70 backdrop-blur-xl p-8 shadow-xl relative before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-br before:from-blue-400/5 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300">
+        <div className="rounded-3xl border border-blue-200/50 bg-white/70 backdrop-blur-xl p-8 shadow-xl relative before:absolute before:inset-0 before:pointer-events-none before:rounded-3xl before:bg-gradient-to-br before:from-blue-400/5 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300">
           {/* Mode toggle */}
           <div className="mb-6 flex rounded-2xl bg-slate-100/50 p-1 border border-blue-200/30">
             <button

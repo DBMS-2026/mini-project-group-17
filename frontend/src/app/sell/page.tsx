@@ -106,9 +106,13 @@ export default function SellPage() {
         images: uploadedImageUrls
       };
 
+      const token = localStorage.getItem('nexus_token');
       const dbRes = await fetch('http://localhost:3001/api/properties', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        },
         body: JSON.stringify(finalData)
       });
 
