@@ -292,7 +292,7 @@ export function FilterSidebar({
   return (
     <>
       <div className="hidden lg:block w-72 flex-shrink-0">
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm sticky top-24">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto">
           {content}
         </div>
       </div>

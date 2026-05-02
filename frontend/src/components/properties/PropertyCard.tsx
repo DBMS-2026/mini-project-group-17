@@ -65,19 +65,23 @@ export default function PropertyCard({ property, isRent }: PropertyCardProps) {
           )}
         </div>
 
-        <div className="flex items-center gap-4 py-3 border-t border-gray-100 flex-wrap">
-          <div className="flex items-center gap-1.5 text-gray-600 text-sm">
-            <BedDouble className="w-4 h-4 text-nexus-400" />
-            <span>{property.bedrooms} BHK</span>
+        <div className="p-4">
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <div className="flex-1">
+              <div className="text-xl font-bold text-gray-900 mb-1">
+                {formatPrice(property.price)}
+                {isRent && <span className="text-sm font-normal text-gray-500">/mo</span>}
+              </div>
+              <h3 className="font-display font-semibold text-gray-800 mb-1 line-clamp-1">{property.title}</h3>
+            </div>
           </div>
-
-          <h3 className="font-display font-semibold text-gray-800 mb-1 line-clamp-1">{property.title}</h3>
+          
           <div className="flex items-center gap-1 text-gray-500 text-sm mb-3">
             <MapPin className="w-3.5 h-3.5 text-nexus-400 shrink-0" />
             <span className="line-clamp-1">{property.location || (property as any).city}</span>
           </div>
 
-          <div className="flex items-center gap-4 py-3 border-t border-gray-100">
+          <div className="flex items-center gap-4 py-3 border-t border-gray-100 flex-wrap">
             {property.bedrooms && (
               <div className="flex items-center gap-1.5 text-gray-600 text-sm">
                 <BedDouble className="w-4 h-4 text-nexus-400" />
@@ -96,14 +100,13 @@ export default function PropertyCard({ property, isRent }: PropertyCardProps) {
                 <span>{formatArea(property.area)}</span>
               </div>
             )}
+            {property.year_built && (
+              <div className="flex items-center gap-1.5 text-gray-600 text-sm">
+                <span className="w-4 h-4 bg-nexus-100 text-nexus-600 rounded flex items-center justify-center text-[10px] font-bold">Y</span>
+                <span>{property.year_built}</span>
+              </div>
+            )}
           </div>
-          {property.year_built && (
-            <div className="flex items-center gap-1.5 text-gray-600 text-sm">
-              <span className="w-4 h-4 bg-nexus-100 text-nexus-600 rounded flex items-center justify-center text-[10px] font-bold">Y</span>
-              <span>{property.year_built}</span>
-            </div>
-          )}
-        </div>
 
         {/* AI Amenities & Distances */}
         <div className="py-2 border-t border-gray-100">

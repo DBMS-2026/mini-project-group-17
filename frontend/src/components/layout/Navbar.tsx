@@ -96,22 +96,6 @@ export default function Navbar() {
                   onMouseEnter={() => link.dropdown && setActiveDropdown(link.label)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  {link.label === 'Contact' ? (
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault()
-                        setContactModalOpen(true)
-                      }}
-                      className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[13px] font-medium whitespace-nowrap transition-all ${
-                        link.highlight
-                          ? 'text-nexus-600 hover:bg-nexus-50'
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-                      }`}
-                    >
-                      {link.icon && <link.icon className="w-3.5 h-3.5 flex-shrink-0" />}
-                      <span>{link.label}</span>
-                    </button>
-                  ) : (
                     <Link
                       href={link.href}
                       className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[13px] font-medium whitespace-nowrap transition-all ${
@@ -137,8 +121,6 @@ export default function Navbar() {
                         }`} />
                       )}
                     </Link>
-                  )}
-
 
                   {/* Dropdown */}
                   {link.dropdown && (
@@ -256,22 +238,6 @@ export default function Navbar() {
         {mobileOpen && (
           <div className="lg:hidden bg-white border-t border-gray-100 py-3 px-4 space-y-0.5 max-h-[80vh] overflow-y-auto shadow-xl">
             {navLinks.map((link) => (
-              link.label === 'Contact' ? (
-                <button
-                  key={link.label}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    setMobileOpen(false)
-                    setContactModalOpen(true)
-                  }}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors w-full text-left ${
-                    link.highlight ? 'text-nexus-600 hover:bg-nexus-50' : 'text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  {link.icon && <link.icon className="w-4 h-4" />}
-                  {link.label}
-                </button>
-              ) : (
                 <Link
                   key={link.label}
                   href={link.href}
@@ -290,7 +256,6 @@ export default function Navbar() {
                     </span>
                   )}
                 </Link>
-              )
             ))}
 
             <div className="pt-3 border-t border-gray-100 space-y-2">
