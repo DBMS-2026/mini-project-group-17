@@ -26,11 +26,16 @@
 - **Similar Property Recommendations**: Suggests alternative properties using a multi-dimensional nearest-neighbor search based on price, area, and BHK.
 - **Real-time AI Validation**: The search bar queries the ML model to ensure users only search within supported data-rich cities.
 
+### 🔄 Multi-Node City Swap Engine (Graph Theory)
+- **Cycle Detection Algorithm**: A dedicated Python FastAPI microservice that models users and properties as a Directed Graph. It uses recursive Depth-First Search (DFS) to find multi-party swap loops (e.g., A -> B -> C -> A) so renters can exchange leases across cities seamlessly.
+- **Automated Matching**: When a cycle is detected, the PostgreSQL database is automatically updated to mark all involved requests as "Matched", alerting the respective users.
+
 ### 💻 Full-Stack Architecture
 - **Interactive UI**: Built with Next.js and Tailwind CSS for a highly responsive, modern, and aesthetic user experience.
-- **Robust Relational Database**: PostgreSQL backend storing highly detailed schemas (over 30 data points per property, including RERA status, facing, and distances).
-- **Authentic Data Source**: Pre-seeded with over 1,250 genuine property listings sourced from a Kaggle 25-City Indian Housing dataset.
-- **Secure Authentication**: Custom JWT email authentication paired with Google OAuth integration.
+- **Robust Relational Database**: PostgreSQL backend storing highly detailed schemas (over 30 data points per property) and utilizing ACID-compliant transactions for complex lease swaps.
+- **Database Triggers**: Implements automated PostgreSQL Triggers (`AFTER INSERT`) to instantly generate notifications for property owners whenever a user submits an inquiry or contact request.
+- **Authentic Data Source**: Pre-seeded with over 500 AI-generated properties across 25 major Indian cities for testing.
+- **Secure Authentication**: Robust session management using custom JWT paired with Google OAuth 2.0 via Google's official Auth Library.
 
 ---
 
@@ -39,9 +44,10 @@
 | Component | Technology |
 | :--- | :--- |
 | **Frontend** | Next.js 15, React, Tailwind CSS, Zustand, Lucide React |
-| **Backend API** | Node.js, Express, Socket.io (WebSockets) |
-| **Database** | PostgreSQL (`pg` module) |
+| **Backend API** | Node.js, Express, jsonwebtoken, google-auth-library |
+| **Database** | PostgreSQL (Complex Queries, Triggers, ACID Transactions) |
 | **AI Microservice** | Python, FastAPI, Scikit-Learn, Pandas, Joblib |
+| **Swap Engine** | Python, FastAPI, Network Graph Theory (DFS Cycle Detection) |
 
 ---
 
@@ -109,10 +115,12 @@ DBMS_Project/
 │   ├── fraud_pipeline.pkl   # Pre-trained ML Model
 │   └── kaggle_indian_housing_25_cities.csv # Raw Dataset
 ├── backend/                 # Node.js Express Server
-│   ├── controllers/         # API Route Handlers
-│   ├── models/              # PostgreSQL Queries (PropertyModel, etc.)
+│   ├── controllers/         # API Route Handlers (Auth, Properties, Users)
+│   ├── models/              # PostgreSQL Queries (PropertyModel, UserModel)
 │   ├── routes/              # Express API Routes
-│   └── import_csv_to_db.js  # DB Seeding Script
+│   └── seed_ai_properties.js# DB AI Mock Seeding Script
+├── swap-engine/             # Python Graph Theory Microservice
+│   └── main.py              # DFS Cycle Detection Algorithm
 └── frontend/                # Next.js App
     ├── src/app/             # Pages & Routing
     ├── src/components/      # Reusable React Components (Hero, Cards)
