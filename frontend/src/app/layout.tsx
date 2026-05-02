@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Providers from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,24 +18,27 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full bg-slate-50 text-slate-950">
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: "#0f172a",
-              color: "#f8fafc",
-              borderRadius: "12px",
-              fontSize: "14px",
-            },
-            success: { iconTheme: { primary: "#22c55e", secondary: "#0f172a" } },
-            error: { iconTheme: { primary: "#ef4444", secondary: "#f8fafc" } },
-          }}
-        />
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: "#0f172a",
+                color: "#f8fafc",
+                borderRadius: "12px",
+                fontSize: "14px",
+              },
+              success: { iconTheme: { primary: "#22c55e", secondary: "#0f172a" } },
+              error: { iconTheme: { primary: "#ef4444", secondary: "#f8fafc" } },
+            }}
+          />
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
 }
+

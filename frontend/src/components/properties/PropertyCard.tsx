@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { Heart, MapPin, BedDouble, Bath, Maximize2, TrendingUp, ShieldCheck } from 'lucide-react'
+import { Heart, MapPin, BedDouble, Bath, Maximize2, TrendingUp, ShieldCheck, Dumbbell, Waves, Users, Map, Train, Bus, Car } from 'lucide-react'
 import type { Property } from '@/lib/data'
 import { formatPrice, formatArea } from '@/lib/utils'
 import { useAppStore } from '@/store/useAppStore'
@@ -88,7 +88,7 @@ export default function PropertyCard({ property, isRent }: PropertyCardProps) {
           <span className="line-clamp-1">{property.location}</span>
         </div>
 
-        <div className="flex items-center gap-4 py-3 border-t border-gray-100">
+        <div className="flex items-center gap-4 py-3 border-t border-gray-100 flex-wrap">
           <div className="flex items-center gap-1.5 text-gray-600 text-sm">
             <BedDouble className="w-4 h-4 text-nexus-400" />
             <span>{property.bedrooms} BHK</span>
@@ -100,6 +100,34 @@ export default function PropertyCard({ property, isRent }: PropertyCardProps) {
           <div className="flex items-center gap-1.5 text-gray-600 text-sm">
             <Maximize2 className="w-4 h-4 text-nexus-400" />
             <span>{formatArea(property.area)}</span>
+          </div>
+          {property.year_built && (
+            <div className="flex items-center gap-1.5 text-gray-600 text-sm">
+              <span className="w-4 h-4 bg-nexus-100 text-nexus-600 rounded flex items-center justify-center text-[10px] font-bold">Y</span>
+              <span>{property.year_built}</span>
+            </div>
+          )}
+        </div>
+
+        {/* AI Amenities & Distances */}
+        <div className="py-2 border-t border-gray-100">
+          <div className="flex flex-wrap gap-2 mb-2">
+            {property.has_pool && <span className="bg-blue-50 text-blue-600 px-2 py-0.5 rounded text-[10px] font-semibold flex items-center gap-1"><Waves size={10}/> Pool</span>}
+            {property.has_gym && <span className="bg-orange-50 text-orange-600 px-2 py-0.5 rounded text-[10px] font-semibold flex items-center gap-1"><Dumbbell size={10}/> Gym</span>}
+            {property.has_clubhouse && <span className="bg-purple-50 text-purple-600 px-2 py-0.5 rounded text-[10px] font-semibold flex items-center gap-1"><Users size={10}/> Club</span>}
+            {property.has_sports_ground && <span className="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded text-[10px] font-semibold flex items-center gap-1"><Map size={10}/> Sports</span>}
+          </div>
+          
+          <div className="flex items-center gap-3 text-[11px] text-gray-500 font-medium">
+            {property.dist_metro_km !== undefined && property.dist_metro_km !== null && (
+              <span className="flex items-center gap-1"><Train size={12} className="text-gray-400"/> {property.dist_metro_km}km</span>
+            )}
+            {property.dist_bus_km !== undefined && property.dist_bus_km !== null && (
+              <span className="flex items-center gap-1"><Bus size={12} className="text-gray-400"/> {property.dist_bus_km}km</span>
+            )}
+            {property.dist_highway_km !== undefined && property.dist_highway_km !== null && (
+              <span className="flex items-center gap-1"><Car size={12} className="text-gray-400"/> {property.dist_highway_km}km</span>
+            )}
           </div>
         </div>
 

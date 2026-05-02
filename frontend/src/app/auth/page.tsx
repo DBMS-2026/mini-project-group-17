@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { LogIn, UserPlus, Chrome, Eye, EyeOff, Loader2 } from "lucide-react";
+import { LogIn, UserPlus, Eye, EyeOff, Loader2 } from "lucide-react";
+import { GoogleLogin } from "@react-oauth/google";
 import { loginWithEmail, registerWithEmail, loginWithGoogle } from "@/lib/api";
 import { useAppStore } from "@/store/useAppStore";
 import toast from "react-hot-toast";
@@ -53,10 +54,15 @@ export default function AuthPage() {
     }
   }
 
-  async function handleGoogle() {
+  async function handleGoogleSuccess(credentialResponse: any) {
+    if (!credentialResponse.credential) {
+      toast.error("Google login failed: No credential received");
+      return;
+    }
+    
     setGoogleLoading(true);
     try {
-      const res = await loginWithGoogle();
+      const res = await loginWithGoogle(credentialResponse.credential);
       localStorage.setItem("nexus_token", res.token);
       setUser({ id: res.user.id, name: res.user.name, email: res.user.email, role: res.user.role });
       toast.success("Signed in with Google!");
@@ -67,6 +73,10 @@ export default function AuthPage() {
     } finally {
       setGoogleLoading(false);
     }
+  }
+
+  function handleGoogleError() {
+    toast.error("Google sign-in was unsuccessful");
   }
 
   return (
@@ -196,18 +206,23 @@ export default function AuthPage() {
           </div>
 
           {/* Google */}
-          <button
-            onClick={handleGoogle}
-            disabled={googleLoading}
-            className="flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-slate-50 disabled:opacity-60"
-          >
+          <div className="flex justify-center w-full">
             {googleLoading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <div className="flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-950">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Connecting...
+              </div>
             ) : (
-              <Chrome className="h-4 w-4 text-blue-500" />
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleError}
+                theme="outline"
+                size="large"
+                shape="pill"
+                width="100%"
+              />
             )}
-            {googleLoading ? "Connecting..." : "Continue with Google"}
-          </button>
+          </div>
 
           <p className="mt-5 text-center text-xs text-slate-400">
             By continuing, you agree to NexusEstate&apos;s Terms of Service and Privacy Policy.

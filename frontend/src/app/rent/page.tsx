@@ -16,6 +16,15 @@ export default function RentPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Read search params from URL
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      const city = params.get('city');
+      if (q) setSearchQ(q);
+      if (city) setFilters(prev => ({ ...prev, city }));
+    }
+
     fetchProperties({ listing_type: 'rent' }).then(data => {
       setProperties(data.properties as Property[]);
       setLoading(false);
@@ -60,7 +69,8 @@ export default function RentPage() {
       props = props.filter(
         (p) =>
           p.title.toLowerCase().includes(searchQ.toLowerCase()) ||
-          p.location.toLowerCase().includes(searchQ.toLowerCase())
+          p.location.toLowerCase().includes(searchQ.toLowerCase()) ||
+          (p.city && p.city.toLowerCase().includes(searchQ.toLowerCase()))
       );
     }
 

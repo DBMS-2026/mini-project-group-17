@@ -13,7 +13,7 @@ class PropertyModel {
 
   static async getAllProperties(listingType = null) {
     let query = `
-      SELECT property_id as id, title, type, status, price, area, bedrooms, bathrooms, locality as location, city, image, images, tag, is_rera, furnishing_status, has_parking, has_power_backup, has_elevator, listing_type
+      SELECT property_id as id, title, type, status, price, area, bedrooms, bathrooms, locality as location, city, image, images, tag, is_rera, furnishing_status, has_parking, has_power_backup, has_elevator, listing_type, year_built, dist_metro_km, dist_highway_km, dist_bus_km, has_pool, has_gym, has_clubhouse, has_sports_ground
       FROM properties
     `;
     const params = [];

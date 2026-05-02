@@ -23,6 +23,14 @@ export type Property = {
   baths?: number
   leaseTerm?: string
   image?: string
+  year_built?: number
+  has_pool?: boolean
+  has_gym?: boolean
+  has_clubhouse?: boolean
+  has_sports_ground?: boolean
+  dist_metro_km?: number
+  dist_bus_km?: number
+  dist_highway_km?: number
 }
 
 export const INDIAN_CITIES = [

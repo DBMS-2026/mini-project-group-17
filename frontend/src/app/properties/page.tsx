@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Search, SlidersHorizontal, Grid3X3, List, Loader2 } from "lucide-react";
-import { fetchProperties } from "@/lib/api";
+import { Search, SlidersHorizontal, Grid3X3, List, Loader2, Sparkles, Waves, Dumbbell, Users, Map } from "lucide-react";
+import { fetchProperties, rankProperties } from "@/lib/api";
 import type { Property } from "@/lib/data";
 import PropertyCard from "@/components/properties/PropertyCard";
 import FilterSidebar, { FilterState, defaultFilters } from "@/components/properties/FilterSidebar";
@@ -23,8 +23,20 @@ export default function PropertiesPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
+  const [rankedIds, setRankedIds] = useState<string[]>([]);
+  const [isRanking, setIsRanking] = useState(false);
 
   useEffect(() => {
+    // Read search params from URL
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      const city = params.get('city');
+      if (q) setSearchQ(q);
+      if (city) setFilters(prev => ({ ...prev, city }));
+    }
+
     fetchProperties({ listing_type: 'sale' }).then(data => {
       setProperties(data.properties as Property[]);
       setLoading(false);
@@ -33,6 +45,26 @@ export default function PropertiesPage() {
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (selectedAmenities.length > 0 && properties.length > 0) {
+      setIsRanking(true);
+      const propsToSend = properties.map(p => ({
+        id: String(p.id),
+        has_pool: Boolean(p.has_pool),
+        has_gym: Boolean(p.has_gym),
+        has_clubhouse: Boolean(p.has_clubhouse),
+        has_sports_ground: Boolean(p.has_sports_ground),
+        dist_metro_km: p.dist_metro_km != null ? Number(p.dist_metro_km) : 10.0
+      }));
+      rankProperties(propsToSend, selectedAmenities)
+        .then(res => setRankedIds(res.ranked_ids))
+        .catch(console.error)
+        .finally(() => setIsRanking(false));
+    } else {
+      setRankedIds([]);
+    }
+  }, [selectedAmenities, properties]);
 
   const filtered = useMemo(() => {
     let props = [...properties];
@@ -69,11 +101,21 @@ export default function PropertiesPage() {
       props = props.filter(
         (p) =>
           p.title.toLowerCase().includes(searchQ.toLowerCase()) ||
-          p.location.toLowerCase().includes(searchQ.toLowerCase())
+          p.location.toLowerCase().includes(searchQ.toLowerCase()) ||
+          (p.city && p.city.toLowerCase().includes(searchQ.toLowerCase()))
       );
     }
 
-    if (sort === "price-asc") {
+    if (rankedIds.length > 0) {
+      props.sort((a, b) => {
+        const indexA = rankedIds.indexOf(String(a.id));
+        const indexB = rankedIds.indexOf(String(b.id));
+        if (indexA === -1 && indexB === -1) return 0;
+        if (indexA === -1) return 1;
+        if (indexB === -1) return -1;
+        return indexA - indexB;
+      });
+    } else if (sort === "price-asc") {
       props.sort((a, b) => parseFloat(String(a.price)) - parseFloat(String(b.price)));
     } else if (sort === "price-desc") {
       props.sort((a, b) => parseFloat(String(b.price)) - parseFloat(String(a.price)));
@@ -82,7 +124,7 @@ export default function PropertiesPage() {
     }
 
     return props;
-  }, [filters, sort, searchQ, properties]);
+  }, [filters, sort, searchQ, properties, rankedIds]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -169,7 +211,46 @@ export default function PropertiesPage() {
               </div>
             </div>
 
-            {loading ? (
+            {/* AI Smart Sort Bar */}
+            <div className="bg-nexus-50 border border-nexus-100 rounded-xl p-4 mb-6 flex items-center justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-white p-2 rounded-full shadow-sm">
+                  <Sparkles className="w-5 h-5 text-nexus-600" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-nexus-900">AI Smart Sorting</h3>
+                  <p className="text-xs text-nexus-600">Select amenities to rank properties by ML Desirability Score</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-2 flex-wrap">
+                {[
+                  { id: 'pool', icon: Waves, label: 'Pool' },
+                  { id: 'gym', icon: Dumbbell, label: 'Gym' },
+                  { id: 'clubhouse', icon: Users, label: 'Clubhouse' },
+                  { id: 'sports', icon: Map, label: 'Sports Ground' }
+                ].map(amenity => (
+                  <button
+                    key={amenity.id}
+                    onClick={() => setSelectedAmenities(prev => 
+                      prev.includes(amenity.id) 
+                        ? prev.filter(a => a !== amenity.id)
+                        : [...prev, amenity.id]
+                    )}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
+                      selectedAmenities.includes(amenity.id)
+                        ? 'bg-nexus-600 text-white border-nexus-600'
+                        : 'bg-white text-gray-600 border-gray-200 hover:border-nexus-300'
+                    }`}
+                  >
+                    <amenity.icon className="w-3.5 h-3.5" />
+                    {amenity.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {loading || isRanking ? (
               <div className="flex flex-col items-center justify-center py-20 text-nexus-600">
                 <Loader2 className="w-10 h-10 animate-spin mb-4" />
                 <p className="text-gray-500 font-medium">Loading properties from database...</p>

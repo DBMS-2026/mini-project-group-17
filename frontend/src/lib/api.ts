@@ -64,11 +64,11 @@ export async function registerWithEmail(
   });
 }
 
-/** Simulated Google login using the backend's mock-token flow */
-export async function loginWithGoogle(role = 'Nomad'): Promise<AuthResponse> {
+/** Google login using JWT token from Google Identity Services */
+export async function loginWithGoogle(token: string, role = 'Nomad'): Promise<AuthResponse> {
   return apiFetch<AuthResponse>(`${BACKEND_URL}/api/auth/google`, {
     method: 'POST',
-    body: JSON.stringify({ token: 'mock-google-jwt-token', role }),
+    body: JSON.stringify({ token, role }),
   });
 }
 
@@ -146,6 +146,23 @@ export async function analyzeFraud(listed_price: number, location: string): Prom
     body: JSON.stringify({ listed_price, location }),
   });
 }
+
+/** Get list of cities supported by the AI ML models */
+export async function fetchSupportedCities(): Promise<{ cities: string[] }> {
+  return apiFetch<{ cities: string[] }>(`${AI_SERVICE_URL}/supported-cities`);
+}
+
+/** Rank properties using AI desirability model */
+export async function rankProperties(
+  properties: { id: string, has_pool?: boolean, has_gym?: boolean, has_clubhouse?: boolean, has_sports_ground?: boolean, dist_metro_km?: number }[],
+  preferences: string[]
+): Promise<{ ranked_ids: string[] }> {
+  return apiFetch<{ ranked_ids: string[] }>(`${AI_SERVICE_URL}/rank-properties`, {
+    method: 'POST',
+    body: JSON.stringify({ properties, preferences }),
+  });
+}
+
 
 // ─── Swap Engine ──────────────────────────────────────────────────────────────
 
