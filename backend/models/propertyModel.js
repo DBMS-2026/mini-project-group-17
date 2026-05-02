@@ -16,7 +16,8 @@ class PropertyModel {
       SELECT property_id, property_id as id, owner_id, title, type, status, price, area, bedrooms, bathrooms,
              locality as location, city, image, images, tag, is_rera, furnishing_status,
              has_parking, has_power_backup, has_elevator, listing_type,
-             avg_rating, rating_count, description, facing, furnishing
+             avg_rating, rating_count, description, facing, furnishing,
+             year_built, dist_metro_km, dist_highway_km, dist_bus_km, has_pool, has_gym, has_clubhouse, has_sports_ground
       FROM properties
     `;
     const params = [];

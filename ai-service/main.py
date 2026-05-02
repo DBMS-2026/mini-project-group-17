@@ -209,6 +209,68 @@ async def get_similar_properties(req: SimilarPropertiesRequest):
     return {"similar_properties": similar}
 
 
+@app.get("/supported-cities")
+async def get_supported_cities():
+    """
+    Extracts and returns the cities known to the trained ML models.
+    """
+    try:
+        pipeline_path = os.path.join(MODEL_DIR, 'fraud_pipeline.pkl')
+        if os.path.exists(pipeline_path):
+            pipeline = joblib.load(pipeline_path)
+            cities = pipeline.named_steps['preprocessor'].transformers_[0][1].categories_[0].tolist()
+            return {"cities": cities}
+        else:
+            return {"cities": ["Mumbai", "Bangalore", "Delhi", "Pune", "Hyderabad"]}
+    except Exception as e:
+        print(f"Error extracting cities: {e}")
+        return {"cities": ["Mumbai", "Bangalore", "Delhi", "Pune", "Hyderabad"]}
+
+class PropertyItem(BaseModel):
+    id: str
+    has_pool: bool = False
+    has_gym: bool = False
+    has_clubhouse: bool = False
+    has_sports_ground: bool = False
+    dist_metro_km: float = 10.0
+
+class RankPropertiesRequest(BaseModel):
+    properties: list[PropertyItem]
+    preferences: list[str]
+
+@app.post("/rank-properties")
+async def rank_properties(req: RankPropertiesRequest):
+    """
+    Ranks a list of properties based on user amenity preferences.
+    Uses AI desirability logic weighted by the selected preferences.
+    """
+    try:
+        ranked = []
+        prefs = [p.lower() for p in req.preferences]
+        
+        for p in req.properties:
+            score = 50.0
+            if "pool" in prefs and p.has_pool: score += 20
+            elif p.has_pool: score += 5
+            
+            if "gym" in prefs and p.has_gym: score += 20
+            elif p.has_gym: score += 5
+            
+            if "clubhouse" in prefs and p.has_clubhouse: score += 20
+            elif p.has_clubhouse: score += 5
+            
+            if "sports" in prefs and p.has_sports_ground: score += 20
+            elif p.has_sports_ground: score += 5
+            
+            score -= min(15, p.dist_metro_km)
+            
+            ranked.append({"id": p.id, "score": score})
+            
+        ranked.sort(key=lambda x: x["score"], reverse=True)
+        return {"ranked_ids": [r["id"] for r in ranked]}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)

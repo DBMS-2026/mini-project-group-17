@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Providers from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,3 +39,4 @@ export default function RootLayout({
     </html>
   );
 }
+

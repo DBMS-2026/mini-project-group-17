@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search, MapPin, ChevronDown, Mic } from 'lucide-react'
 import { INDIAN_CITIES } from '@/lib/data'
+import { fetchSupportedCities } from '@/lib/api'
+import { useEffect } from 'react'
 
 const searchTabs = ['Buy', 'Rent', 'New Launch', 'Commercial', 'Plots/Land', 'Projects']
 
@@ -12,6 +14,14 @@ export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCity, setSelectedCity] = useState('')
   const [showCityDropdown, setShowCityDropdown] = useState(false)
+  const [aiCities, setAiCities] = useState<string[]>([])
+  const [showAutocomplete, setShowAutocomplete] = useState(false)
+
+  useEffect(() => {
+    fetchSupportedCities()
+      .then(data => setAiCities(data.cities || []))
+      .catch(err => console.error('Failed to fetch AI cities:', err))
+  }, [])
 
   const handleSearch = () => {
     const params = new URLSearchParams()
@@ -111,19 +121,53 @@ export default function HeroSection() {
                 )}
               </div>
 
-              <div className="flex-1 flex items-center px-4">
+              <div className="flex-1 flex items-center px-4 relative">
                 <Search className="w-5 h-5 text-gray-400 mr-3 shrink-0" />
                 <input
                   type="text"
                   placeholder="Search locality, project, society, landmark..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value)
+                    setShowAutocomplete(true)
+                  }}
+                  onFocus={() => setShowAutocomplete(true)}
+                  onBlur={() => setTimeout(() => setShowAutocomplete(false), 200)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                   className="flex-1 outline-none text-gray-800 placeholder-gray-400 text-sm py-4"
                 />
                 <button className="p-2 text-gray-400 hover:text-nexus-500 transition-colors">
                   <Mic className="w-4 h-4" />
                 </button>
+
+                {showAutocomplete && searchQuery && aiCities.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-xl border border-gray-100 py-2 max-h-64 overflow-y-auto z-50">
+                    <div className="px-4 py-2 text-xs font-semibold text-nexus-600 bg-nexus-50 uppercase tracking-wider flex items-center gap-2">
+                      <span>🤖 AI Supported Cities</span>
+                    </div>
+                    {aiCities
+                      .filter(c => c.toLowerCase().includes(searchQuery.toLowerCase()))
+                      .map(city => (
+                        <button
+                          key={city}
+                          onClick={() => {
+                            setSearchQuery(city)
+                            setShowAutocomplete(false)
+                            setSelectedCity(city)
+                          }}
+                          className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-nexus-50 hover:text-nexus-600 flex items-center gap-2"
+                        >
+                          <MapPin className="w-4 h-4 text-gray-400" />
+                          {city}
+                        </button>
+                      ))}
+                    {aiCities.filter(c => c.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                       <div className="px-4 py-3 text-sm text-gray-500 text-center">
+                         No AI models trained for "{searchQuery}" yet.
+                       </div>
+                    )}
+                  </div>
+                )}
               </div>
 
               <button
@@ -135,17 +179,29 @@ export default function HeroSection() {
               </button>
             </div>
 
-            <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 flex-wrap">
-              <span className="text-gray-500 text-xs font-medium">Popular:</span>
-              {['2 BHK in Mumbai', '3 BHK in Bangalore', 'Villa in Gurgaon', 'Plot in Noida', 'PG in Delhi'].map((suggestion) => (
-                <button
-                  key={suggestion}
-                  onClick={() => setSearchQuery(suggestion)}
-                  className="text-xs bg-white hover:bg-nexus-50 border border-gray-200 hover:border-nexus-300 text-gray-600 hover:text-nexus-600 px-3 py-1 rounded-full transition-all"
-                >
-                  {suggestion}
-                </button>
-              ))}
+            <div className="flex items-center justify-between px-4 py-3 bg-gray-50 flex-wrap">
+              <div className="flex items-center gap-2">
+                {searchQuery.length > 0 || selectedCity.length > 0 ? (
+                  aiCities.some(c => c.toLowerCase() === (selectedCity || searchQuery).toLowerCase() || searchQuery.toLowerCase().includes(c.toLowerCase())) ? (
+                    <span className="text-emerald-600 text-xs font-semibold flex items-center gap-1">✅ AI Supported Location - Full ML Insights Available</span>
+                  ) : (
+                    <span className="text-amber-600 text-xs font-semibold flex items-center gap-1">⚠️ No AI insights available for this specific location yet</span>
+                  )
+                ) : (
+                  <>
+                    <span className="text-gray-500 text-xs font-medium">Popular:</span>
+                    {['2 BHK in Mumbai', '3 BHK in Bangalore', 'Villa in Gurgaon', 'Plot in Noida', 'PG in Delhi'].map((suggestion) => (
+                      <button
+                        key={suggestion}
+                        onClick={() => setSearchQuery(suggestion)}
+                        className="text-xs bg-white hover:bg-nexus-50 border border-gray-200 hover:border-nexus-300 text-gray-600 hover:text-nexus-600 px-3 py-1 rounded-full transition-all"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
