@@ -31,6 +31,10 @@ export type Property = {
   dist_metro_km?: number
   dist_bus_km?: number
   dist_highway_km?: number
+  ownerName?: string
+  ownerPhone?: string
+  ownerEmail?: string
+  ownerType?: string
 }
 
 export const INDIAN_CITIES = [
@@ -94,6 +98,10 @@ export const MOCK_PROPERTIES: Property[] = [
     tag: 'NEW LAUNCH',
     priceChange: 12,
     isRera: true,
+    ownerName: 'Amit Sharma',
+    ownerPhone: '+919876543210',
+    ownerEmail: 'amit.sharma@gmail.com',
+    ownerType: 'Owner',
   },
   {
     id: 'mumbai-riverfront',
@@ -112,6 +120,10 @@ export const MOCK_PROPERTIES: Property[] = [
     tag: 'FEATURED',
     priceChange: 18,
     isRera: true,
+    ownerName: 'Priya Mehta',
+    ownerPhone: '+919845123456',
+    ownerEmail: 'priya.mehta@gmail.com',
+    ownerType: 'Builder',
   },
   {
     id: 'bangalore-skyline',
@@ -130,6 +142,10 @@ export const MOCK_PROPERTIES: Property[] = [
     tag: 'NEW ARRIVAL',
     priceChange: 15,
     isRera: false,
+    ownerName: 'Rajesh Kumar',
+    ownerPhone: '+919876543210',
+    ownerEmail: 'rajesh.kumar@gmail.com',
+    ownerType: 'Owner',
   },
   {
     id: 'hyderabad-green-lane',
@@ -148,6 +164,10 @@ export const MOCK_PROPERTIES: Property[] = [
     tag: 'HOT',
     priceChange: 22,
     isRera: true,
+    ownerName: 'Sunita Reddy',
+    ownerPhone: '+919845123456',
+    ownerEmail: 'sunita.reddy@gmail.com',
+    ownerType: 'Owner',
   },
   {
     id: 'pune-luxury-grove',

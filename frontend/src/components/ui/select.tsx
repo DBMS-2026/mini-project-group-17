@@ -59,7 +59,7 @@ function Select({
         onClick={() => setOpen(!open)}
         className="flex h-9 w-full items-center justify-between rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm shadow-sm transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-nexus-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        <span className="truncate">{selectedLabel}</span>
+        <span className="truncate text-black">{selectedLabel}</span>
         <ChevronDown
           className={cn(
             "ml-2 h-4 w-4 shrink-0 text-gray-400 transition-transform duration-200",
@@ -68,7 +68,7 @@ function Select({
         />
       </button>
       {open && (
-        <div className="absolute top-full left-0 z-50 mt-1 w-full min-w-[8rem] overflow-hidden rounded-xl border border-gray-100 bg-white shadow-xl animate-in fade-in-0 zoom-in-95">
+        <div className="absolute top-full left-0 z-[100] mt-1 w-full min-w-[8rem] overflow-hidden rounded-xl border border-gray-100 bg-white shadow-xl animate-in fade-in-0 zoom-in-95">
           <div className="p-1">
             {options.map((option) => (
               <button
@@ -80,7 +80,7 @@ function Select({
                 className={cn(
                   "relative flex w-full cursor-pointer items-center rounded-lg px-3 py-2 text-sm outline-none transition-colors",
                   value === option.value
-                    ? "bg-nexus-50 text-nexus-700 font-medium"
+                    ? "bg-nexus-50 text-black font-medium"
                     : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                 )}
               >

@@ -124,7 +124,8 @@ export default function SellPage() {
   };
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-12 sm:px-10 bg-slate-50 min-h-screen">
+    <div className="min-h-screen bg-[#e6f9f9]">
+      <main className="mx-auto max-w-4xl px-6 py-12 sm:px-10">
       
       {/* Header */}
       <div className="mb-10 text-center space-y-4">
@@ -338,5 +339,6 @@ export default function SellPage() {
       )}
 
     </main>
+    </div>
   );
 }

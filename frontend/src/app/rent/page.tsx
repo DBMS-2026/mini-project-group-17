@@ -28,8 +28,7 @@ export default function RentPage() {
     fetchProperties({ listing_type: 'rent' }).then(data => {
       setProperties(data.properties as Property[]);
       setLoading(false);
-    }).catch(err => {
-      console.error(err);
+    }).catch(() => {
       setLoading(false);
     });
   }, []);

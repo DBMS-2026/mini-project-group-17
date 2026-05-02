@@ -40,8 +40,7 @@ export default function PropertiesPage() {
     fetchProperties({ listing_type: 'sale' }).then(data => {
       setProperties(data.properties as Property[]);
       setLoading(false);
-    }).catch(err => {
-      console.error(err);
+    }).catch(() => {
       setLoading(false);
     });
   }, []);

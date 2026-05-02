@@ -43,8 +43,7 @@ export const useAppStore = create<AppState>()(
       wishlist: [],
       setUser: (user) => set({ user, isAuthenticated: !!user }),
       logout: () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
+        localStorage.removeItem("nexus_token");
         set({ user: null, isAuthenticated: false });
       },
       updateFilters: (values) =>
